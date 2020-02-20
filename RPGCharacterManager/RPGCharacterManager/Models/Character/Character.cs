@@ -7,6 +7,7 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Character
     {
+        //Character Basic Info
         public CharacterInfo CharInfo { get; set; }
 
         //Inventory
@@ -18,13 +19,16 @@ namespace RPGCharacterManager.Models.Character
         //Saving Throws
         public SaveThrows SavingThrows { get; set; }
 
+        //Known Spells
         public SpellBook Spells { get; set; }
 
+        //Character's Main Stats
         public Stats CharStats { get; set; }
 
         //Wallet
         public Wallet CharWallet { get; set; }
 
+        //Proficiencies
         public List<string> Proficiencies { get; set; }
     }
 }

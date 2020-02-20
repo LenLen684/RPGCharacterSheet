@@ -34,7 +34,13 @@ namespace RPGCharacterManager.Models.Character
         //Character's experience needed to level up
         public int GoalEXP { get; set; }
 
-        //Character's background
+        //Character's background In order:
+        /* 
+         * Personality Traits
+         * Ideals
+         * Bonds
+         * Flaws
+         */
         public List<string> BackgroundInfo { get; set; }
     }
 }

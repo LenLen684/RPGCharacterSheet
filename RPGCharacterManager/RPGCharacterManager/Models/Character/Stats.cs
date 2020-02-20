@@ -5,6 +5,17 @@ using System.Threading.Tasks;
 
 namespace RPGCharacterManager.Models.Character
 {
+    public enum eHitDice
+    {
+        D4,
+        D6,
+        D8,
+        D10,
+        D12,
+        D20,
+        D100
+    }
+
     public class Stats
     {
         #region BaseStats
@@ -35,6 +46,8 @@ namespace RPGCharacterManager.Models.Character
         public int Speed { get; set; }
         public int MaxHP { get; set; }
         public int CurrentHP { get; set; }
+
+        public eHitDice HitDie { get; set; }
         #endregion
     }
 }
