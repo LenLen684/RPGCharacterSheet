@@ -27,7 +27,8 @@ namespace RPGCharacterManager
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
             app.UseRouting(
                 
             );
