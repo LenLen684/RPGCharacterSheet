@@ -20,5 +20,15 @@ namespace RPGCharacterManager.Models.Character
         public bool isProficientIntelligenceSave { get; set; }
         public bool isProficientWisdomSave { get; set; }
         public bool isProficientCharismaSave { get; set; }
+
+        public void CalculateSaveThrowModifiers(Character character)
+        {
+            strengthSaveMod     = (isProficientStrengthSave) ? character.CharStats.StrengthMod + character.CharStats.Proficiency : character.CharStats.StrengthMod;
+            dexteritySaveMod     = (isProficientDexteritySave) ? character.CharStats.DexterityMod + character.CharStats.Proficiency : character.CharStats.DexterityMod;
+            constitutionSaveMod     = (isProficientConstitutionSave) ? character.CharStats.ConstitutionMod + character.CharStats.Proficiency : character.CharStats.ConstitutionMod;
+            intelligenceSaveMod     = (isProficientIntelligenceSave) ? character.CharStats.IntelligenceMod + character.CharStats.Proficiency : character.CharStats.IntelligenceMod;
+            wisdomSaveMod     = (isProficientWisdomSave) ? character.CharStats.WisdomMod + character.CharStats.Proficiency : character.CharStats.WisdomMod;
+            charismaSaveMod     = (isProficientCharismaSave) ? character.CharStats.CharismaMod + character.CharStats.Proficiency : character.CharStats.CharismaMod;
+        }
     }
 }

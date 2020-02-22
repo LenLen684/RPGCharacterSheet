@@ -11,5 +11,22 @@ namespace RPGCharacterManager.Models.Character
 
         public List<Weapon> weapons { get; set; }
 
+        public void AddWeapon(string weaponName, string weaponDescription, eWeaponMod weaponMod)
+        {
+            Weapon weapon = new Weapon();
+            weapon.weaponName = weaponName;
+            weapon.weaponDescription = weaponDescription;
+            weapon.weaponMod = weaponMod;
+            weapons.Add(weapon);
+        }
+
+        public void AddItem(string itemName, string itemDescription, uint itemAmount)
+        {
+            Item item = new Item();
+            item.itemName = itemName;
+            item.itemDescription = itemDescription;
+            item.itemAmount = itemAmount;
+            items.Add(item);
+        }
     }
 }
