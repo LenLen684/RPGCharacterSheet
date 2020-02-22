@@ -6,6 +6,10 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    @*Temporary navigation bar to show character info*@
+    <div class="topnav">
+        <a asp-action="CharacterInfo" asp-controller="CharacterSheet">CharacterInfo</a>
+    </div>
     <div id="main">
         <div id="content">
             @RenderBody()

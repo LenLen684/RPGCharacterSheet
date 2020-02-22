@@ -30,11 +30,11 @@ namespace RPGCharacterManager
                     name: "index",
                     template: "{controller=Home}/{action=Index}"
                     );
-                routes.MapRoute(
-                    name: "Comeback",
-                    template: "{*.}",
-                    defaults: new { controller = "Home", action = "index" }
-                    );
+                //routes.MapRoute(
+                //    name: "Comeback",
+                //    template: "{*.}",
+                //    defaults: new { controller = "Home", action = "index" }
+                //    );
             });
         }
     }

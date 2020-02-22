@@ -46,8 +46,11 @@ namespace RPGCharacterManager.Models.Character
         public int Speed { get; set; }
         public int MaxHP { get; set; }
         public int CurrentHP { get; set; }
+        public int TempHP { get; set; }
 
         public eHitDice HitDie { get; set; }
+
+        public DeathSaves DeathSaveRolls { get; set; }
         #endregion
     }
 }

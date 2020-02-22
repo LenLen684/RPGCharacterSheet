@@ -8,7 +8,7 @@ namespace RPGCharacterManager.Models.Character
     public class CharacterInfo
     {
         //Character name
-        public string charName { get; set; }
+        public string CharName { get; set; }
 
         //Character class
         public string Class { get; set; }
