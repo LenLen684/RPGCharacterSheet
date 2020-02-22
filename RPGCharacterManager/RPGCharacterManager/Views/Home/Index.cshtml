@@ -1,16 +1,35 @@
-﻿<html>
-<head>
+﻿@model User
 
-</head>
 
-<body>
-<h1>
-    Welcome to the index page!
-</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
 
-<footer>
+    <body>
+        <div id="content">
 
-</footer>
-</body>
+            <div id="login">
+                <p>Log in</p>
+                <form method="post">
+                    <p>
+                        <label>Username or Email: </label>
+                        <input asp-for="Username"/>
+                    </p>
+                    <p>
+                        <label>Password: </label>
+                        <input asp-for="Password" />
+                    </p>
+                </form>
+            </div>
+
+            <div id="signup">
+
+            </div>
+        </div>
+
+        <footer>
+        </footer>
+    </body>
 
 </html>
