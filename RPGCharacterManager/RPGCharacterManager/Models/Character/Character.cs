@@ -14,7 +14,9 @@ namespace RPGCharacterManager.Models.Character
         public Inventory CharInventory { get; set; }
 
         //Features
-        public List<Feature> Features { get; set; }
+        public FeatureList Features { get; set; }
+
+        public Skills CharSkills { get; set; }
 
         //Saving Throws
         public SaveThrows SavingThrows { get; set; }
