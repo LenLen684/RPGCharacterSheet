@@ -22,16 +22,20 @@ namespace RPGCharacterManager
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
-            app.UseRouting(
-                
-            );
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "index",
+                    template: "{controller=Home}/{action=Index}"
+                    );
+                routes.MapRoute(
+                    name: "Comeback",
+                    template: "{*.}",
+                    defaults: new { controller = "Home", action = "index" }
+                    );
+            });
         }
     }
 }

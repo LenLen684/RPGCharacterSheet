@@ -1,16 +1,36 @@
-﻿<html>
-<head>
+﻿@model User
+@{
+    Layout = "~/Views/_Layout.cshtml";
+    ViewData["Title"] = "Log in or Sign up";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
 
-</head>
+    <body>
+ 
 
-<body>
-<h1>
-    Welcome to the index page!
-</h1>
+            <div id="login">
+                <p>Log in</p>
+                <form method="post">
+                    <p>
+                        <label>Username or Email: </label>
+                        <input asp-for="Username"/>
+                    </p>
+                    <p>
+                        <label>Password: </label>
+                        <input asp-for="Password" />
+                    </p>
+                </form>
+            </div>
 
-<footer>
+            <div id="signup">
 
-</footer>
-</body>
+            </div>
+
+        <footer>
+        </footer>
+    </body>
 
 </html>

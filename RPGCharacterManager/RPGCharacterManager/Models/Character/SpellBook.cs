@@ -5,6 +5,16 @@ using System.Threading.Tasks;
 
 namespace RPGCharacterManager.Models.Character
 {
+    public enum eCastingAbility
+    {
+        STRENGTH,
+        DEXTERITY,
+        CONSTITUTION,
+        INTELLIGENCE,
+        WISDOM,
+        CHARISMA
+    }
+
     public class SpellBook
     {
         //List of known spells
@@ -15,5 +25,11 @@ namespace RPGCharacterManager.Models.Character
 
         //Number of spell slots available for use
         public int[] SpellSlotsRemaining { get; set; } = new int[9];
+
+        public int SpellSaveDC { get; set; }
+
+        public int SpellAttackBonus { get; set; }
+
+        public eCastingAbility SpellCastingAbility { get; set; }
     }
 }
