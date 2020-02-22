@@ -23,18 +23,19 @@ namespace RPGCharacterManager
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
-
+            //app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "index",
                     template: "{controller=Home}/{action=Index}"
                     );
-
-
-            }
-
-            );
+                routes.MapRoute(
+                    name: "Comeback",
+                    template: "{*.}",
+                    defaults: new { controller = "Home", action = "index" }
+                    );
+            });
         }
     }
 }
