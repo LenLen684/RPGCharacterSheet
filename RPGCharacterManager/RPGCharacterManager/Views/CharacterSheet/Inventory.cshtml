@@ -1,7 +1,18 @@
 ﻿
 @{
     ViewData["Title"] = "Inventory";
+    Layout = "~/Views/_Layout.cshtml";
 }
+@model Character
 
 <h1>Inventory</h1>
+<p>Copper: @Model.CharWallet.copper</p>
+<p>Silver: @Model.CharWallet.silver</p>
+<p>Gold: @Model.CharWallet.gold</p>
+<p>Electrum: @Model.CharWallet.electrum</p>
+<p>Platinum: @Model.CharWallet.platinum</p>
 
+@foreach(Item item in @Model.CharInventory.items)
+{
+    <p>@item.itemAmount @item.itemName : @item.itemDescription</p>
+}

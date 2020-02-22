@@ -85,7 +85,29 @@ namespace CharacterSheetManager.Controllers
                 DeathSaveRolls = new DeathSaves()
             },
             CharWallet = new Wallet() { copper = 7, silver = 12, gold = 50, electrum = 0, platinum = 0 },
-            Proficiencies = new List<string>() { "Common", "Ignus", "Goblin", "Torches", "Fire attacks" }
+            Proficiencies = new List<string>() { "Common", "Ignus", "Goblin", "Torches", "Fire attacks" },
+            Skills = new List<Skill>()
+            {
+                new Skill() {SkillName = "Acrobatics", Bonus = 1},
+                new Skill(){SkillName = "Animal Handling", Bonus = 1},
+                new Skill(){SkillName = "Arcana", Bonus = 0},
+                new Skill(){SkillName = "Athletics", Bonus = 0},
+                new Skill(){SkillName = "Deception", Bonus = 3},
+                new Skill(){SkillName = "History", Bonus = 0},
+                new Skill(){SkillName = "Insight", Bonus = 1},
+                new Skill(){SkillName = "Intimidation", Bonus = 3},
+                new Skill(){SkillName = "Investigation", Bonus = 1},
+                new Skill(){SkillName = "Medicine", Bonus = 1},
+                new Skill(){SkillName = "Nature", Bonus = 0},
+                new Skill(){SkillName = "Perception", Bonus = 1},
+                new Skill(){SkillName = "Performance", Bonus = 3},
+                new Skill(){SkillName = "Persuassion", Bonus = 3},
+                new Skill(){SkillName = "Religion", Bonus = 1},
+                new Skill(){SkillName = "Sleight of Hand", Bonus = 1},
+                new Skill(){SkillName = "Stealth", Bonus = 1},
+                new Skill(){SkillName = "Survival", Bonus = 1},
+                new Skill(){SkillName = "Deception", Bonus = 3}
+            }
         };
 
         public IActionResult Index()
@@ -99,6 +121,16 @@ namespace CharacterSheetManager.Controllers
         }
 
         public IActionResult Features()
+        {
+            return View(character);
+        }
+
+        public IActionResult Inventory()
+        {
+            return View(character);
+        }
+
+        public IActionResult Skills()
         {
             return View(character);
         }

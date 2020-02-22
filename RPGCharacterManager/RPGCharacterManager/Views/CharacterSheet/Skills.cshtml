@@ -1,7 +1,14 @@
 ﻿
 @{
     ViewData["Title"] = "Skills";
+    Layout = "~/Views/_Layout.cshtml";
 }
+@model Character
 
 <h1>Skills</h1>
 
+@{ foreach(Skill skill in @Model.Skills)
+    {
+        <p>@skill.SkillName : @skill.Bonus Proficient: @skill.IsProficient</p>
+    }
+   }
