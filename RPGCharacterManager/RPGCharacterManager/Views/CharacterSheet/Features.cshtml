@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "Features";
 }
+@model Character
 
 <h1>Features</h1>
 
+@foreach(Feature feature in @Model.Features)
+{
+    <p>@feature.featureName : @feature.featureDescription</p>
+}
