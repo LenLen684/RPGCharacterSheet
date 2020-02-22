@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RPGCharacterManager.Models.Character;
 
-namespace RPGCharacterManager.Models.Character
+namespace RPGCharacterManager.Models.User
 {
     public class User
     {
@@ -19,6 +20,6 @@ namespace RPGCharacterManager.Models.Character
             set { userID = currentID++; }
         }
 
-        public List<Character> Characters { get; set; }
+        public List<Character.Character> Characters { get; set; }
     }
 }
