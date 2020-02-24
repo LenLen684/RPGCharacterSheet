@@ -5,6 +5,15 @@ using System.Threading.Tasks;
 
 namespace RPGCharacterManager.Models.Character
 {
+    public enum eMoneyType
+    {
+        COPPER,
+        SILVER,
+        ELECTRUM,
+        GOLD,
+        PLATINUM
+    }
+
     public class Wallet
     {
         public int copper { get; set; }
@@ -12,5 +21,6 @@ namespace RPGCharacterManager.Models.Character
         public int electrum { get; set; }
         public int gold { get; set; }
         public int platinum { get; set; }
+
     }
 }
