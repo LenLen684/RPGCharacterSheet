@@ -32,7 +32,5 @@ namespace RPGCharacterManager.Models.Character
 
         //Proficiencies
         public List<string> Proficiencies { get; set; }
-
-        public List<Skill> Skills { get; set; }
     }
 }

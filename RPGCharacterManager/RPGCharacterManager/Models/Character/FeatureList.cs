@@ -7,7 +7,7 @@ namespace RPGCharacterManager.Models.Character
 {
     public class FeatureList
     {
-        public List<Feature> Features { get; set; }
+        public List<Feature> Features { get; set; } = new List<Feature>();
 
         public void AddFeature(string featureName, string featureDescription)
         {
