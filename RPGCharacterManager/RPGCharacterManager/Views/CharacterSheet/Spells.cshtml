@@ -2,6 +2,13 @@
 @{
     ViewData["Title"] = "Spells";
 }
+@model Character
 
 <h1>Spells</h1>
 
+@{ 
+    foreach(Spell spell in @Model.Spells.Spells)
+    {
+        <p>@spell.SpellName: Level: @spell.SpellLevel, @spell.SpellDescription</p>
+    }
+}

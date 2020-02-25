@@ -115,5 +115,10 @@ namespace CharacterSheetManager.Controllers
         {
             return View(character);
         }
+
+        public IActionResult Spells()
+        {
+            return View(character);
+        }
     }
 }
