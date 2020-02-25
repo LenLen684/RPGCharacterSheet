@@ -13,20 +13,38 @@
 
             <div id="login">
                 <p>Log in</p>
-                <form method="post">
+                <form asp-action="LogIn" method="post">
                     <p>
                         <label>Username or Email: </label>
-                        <input asp-for="Username"/>
+                        <input asp-for="Username" name="username"/>
                     </p>
                     <p>
                         <label>Password: </label>
-                        <input asp-for="Password" />
+                        <input asp-for="Password" name="password"/>
                     </p>
                 </form>
             </div>
 
             <div id="signup">
-
+                <p>Sign up</p>
+                <form asp-action="SignUp" method="post">
+                    <p>
+                        <label>Email</label>
+                        <input asp-for="Email" name="email"/>
+                    </p>
+                    <p>
+                        <label>Username</label>
+                        <input asp-for="Username" name="username"/>
+                    </p>
+                    <p>
+                        <label>Password: </label>
+                        <input asp-for="Password" name="password"/>
+                    </p>
+                    <p>
+                        <label>Confirm Password: </label>
+                        <input asp-for="Password" name="passwordverification"/>
+                    </p>
+                </form>
             </div>
 
         <footer>
