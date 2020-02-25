@@ -22,6 +22,9 @@
                         <label>Password: </label>
                         <input asp-for="Password" name="password"/>
                     </p>
+                    <p>
+                        <input type="submit" value="Log In" class="btn"/>
+                    </p>
                 </form>
             </div>
 
@@ -30,20 +33,24 @@
                 <form asp-action="SignUp" method="post">
                     <p>
                         <label>Email</label>
-                        <input asp-for="Email" name="email"/>
+                        <input asp-for="Email" name="email" />
                     </p>
                     <p>
                         <label>Username</label>
-                        <input asp-for="Username" name="username"/>
+                        <input asp-for="Username" name="username" />
                     </p>
                     <p>
                         <label>Password: </label>
-                        <input asp-for="Password" name="password"/>
+                        <input asp-for="Password" name="password" />
                     </p>
                     <p>
                         <label>Confirm Password: </label>
-                        <input asp-for="Password" name="passwordverification"/>
+                        <input asp-for="Password" name="passwordverification" />
                     </p>
+                    <p>
+                        <input type="submit" value="Sign Up" class="btn"/>
+                    </p>
+
                 </form>
             </div>
 

@@ -8,14 +8,15 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <div id="main">
     @*Temporary navigation bar to show character info*@
     <div class="topnav">
+        <a asp-controller="Home" asp-action="Index">Log In or Sign Up</a>
         <a asp-action="CharacterInfo" asp-controller="CharacterSheet">CharacterInfo</a>
         <a asp-action="Features" asp-controller="CharacterSheet">Features</a>
         <a asp-action="Inventory" asp-controller="CharacterSheet">Inventory</a>
         <a asp-action="Skills" asp-controller="CharacterSheet">Skills</a>
     </div>
-    <div id="main">
         <div id="content">
             @RenderBody()
         </div>
