@@ -16,7 +16,12 @@ namespace RPGCharacterManager.Controllers
             Username = "TestUser",
             Email = "MyTeamName@Mailinator.com",
             Password = "Password!",
-            Characters = new List<Character>(),
+            Characters = new List<Character>()
+            {
+                new Character(),
+                new Character(),
+                new Character()
+            }
         };
 
         public IActionResult Index()
@@ -73,6 +78,11 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult Characters()
         {
+            foreach(Character c in user.Characters)
+            {
+                c.CreateRandomCharacter();
+            }
+
             return View(user);
         }
     }

@@ -40,6 +40,23 @@ namespace RPGCharacterManager.Models.Character
             Spells = new SpellBook();
             CharWallet = new Wallet();
             Proficiencies = new List<string>();
+            
+            if(CharStats == null)
+            {
+                CharStats = new Stats();
+            }
+            if(CharInfo == null)
+            {
+                CharInfo = new CharacterInfo();
+            }
+            if(CharSkills == null)
+            {
+                CharSkills = new Skills();
+            }
+            if(SavingThrows == null)
+            {
+                SavingThrows = new SaveThrows();
+            }
 
             CharStats.RollRandomStats();
             CharInfo.GenerateRandomCharacterInfo(this);
