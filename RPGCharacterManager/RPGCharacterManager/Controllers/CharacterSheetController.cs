@@ -9,7 +9,6 @@ namespace CharacterSheetManager.Controllers
 {
     public class CharacterSheetController : Controller
     {
-
         //Testing character
         static Character character = new Character()
         {
@@ -98,6 +97,7 @@ namespace CharacterSheetManager.Controllers
 
         public IActionResult CharacterInfo()
         {
+            character.CreateRandomCharacter();
             return View(character);
         }
 

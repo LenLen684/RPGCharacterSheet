@@ -19,7 +19,7 @@ namespace RPGCharacterManager.Models.Character
     public class SpellBook
     {
         //List of known spells
-        public List<Spell> Spells { get; set; }
+        public List<Spell> Spells { get; set; } = new List<Spell>();
 
         //Total number of spell slots available
         public int[] SpellSlotsTotal { get; set; } = new int[9];
@@ -27,11 +27,11 @@ namespace RPGCharacterManager.Models.Character
         //Number of spell slots available for use
         public int[] SpellSlotsRemaining { get; set; } = new int[9];
 
-        public int SpellSaveDC { get; set; }
+        public int SpellSaveDC { get; set; } = 0;
 
-        public int SpellAttackBonus { get; set; }
+        public int SpellAttackBonus { get; set; } = 0;
 
-        public eCastingAbility SpellCastingAbility { get; set; }
+        public eCastingAbility SpellCastingAbility { get; set; } = eCastingAbility.NONE;
 
         public void AddSpell(string spellName, string spellDescription, int spellLevel)
         {
