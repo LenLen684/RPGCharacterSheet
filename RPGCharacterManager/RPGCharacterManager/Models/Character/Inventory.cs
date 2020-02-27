@@ -7,9 +7,9 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Inventory
     {
-        public List<Item> items { get; set; }
+        public List<Item> items { get; set; } = new List<Item>();
 
-        public List<Weapon> weapons { get; set; }
+        public List<Weapon> weapons { get; set; } = new List<Weapon>();
 
         public void AddWeapon(string weaponName, string weaponDescription, eWeaponMod weaponMod)
         {

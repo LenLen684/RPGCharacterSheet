@@ -32,5 +32,22 @@ namespace RPGCharacterManager.Models.Character
 
         //Proficiencies
         public List<string> Proficiencies { get; set; }
+
+        public void CreateRandomCharacter()
+        {
+            //CharInfo = new CharacterInfo();
+            CharInventory = new Inventory();
+            Features = new FeatureList();
+            //CharSkills = new Skills();
+            //SavingThrows = new SaveThrows();
+            //Spells = new SpellBook();
+            //CharStats = new Stats();
+            CharWallet = new Wallet();
+            //Proficiencies = new List<string>();
+
+            CharStats.RollRandomStats();
+            CharInfo.GenerateRandomCharacterInfo(this);
+            CharStats.CalculateModifiers();
+        }
     }
 }
