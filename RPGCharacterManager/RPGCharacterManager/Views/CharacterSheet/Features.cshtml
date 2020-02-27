@@ -11,3 +11,12 @@
 {
     <p>@feature.featureName : @feature.featureDescription</p>
 }
+
+<h1>Proficiencies</h1>
+
+@{ 
+    foreach(string proficiency in @Model.Proficiencies)
+    {
+        <p>@proficiency</p>
+    }
+}
