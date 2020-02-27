@@ -35,15 +35,11 @@ namespace RPGCharacterManager.Models.Character
 
         public void CreateRandomCharacter()
         {
-            //CharInfo = new CharacterInfo();
             CharInventory = new Inventory();
             Features = new FeatureList();
-            //CharSkills = new Skills();
-            //SavingThrows = new SaveThrows();
-            //Spells = new SpellBook();
-            //CharStats = new Stats();
+            Spells = new SpellBook();
             CharWallet = new Wallet();
-            //Proficiencies = new List<string>();
+            Proficiencies = new List<string>();
 
             CharStats.RollRandomStats();
             CharInfo.GenerateRandomCharacterInfo(this);
