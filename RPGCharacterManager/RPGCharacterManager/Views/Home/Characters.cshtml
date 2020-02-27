@@ -1,27 +1,43 @@
-﻿<html>
-<head>
+﻿@model User
 
+@{ 
+    ViewData["Title"] = "Characters";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<html>
+<head>
+    
 </head>
 
 <body>
-<h1>
-    Welcome to the character page
-</h1>
-<table>
-    <thead>
-    <tr>
-        Name
-    <tr/>
-    </thead>
-    <tbody>
-    <tr>
+    <h1>
+        Viewing All Characters
+    </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Character Race</th>
+                <th>Character Class</th>
+                <th>Character Level</th>
+            <tr />
+        </thead>
+        <tbody>
+            @foreach (Character c in Model.Characters)
+            {
+                <tr>
+                    <td>@c.CharInfo.CharName</td>
+                    <td>@c.CharInfo.Race</td>
+                    <td>@c.CharInfo.Class</td>
+                    <td>@c.CharInfo.Level</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-    </tr>
-    </tbody>
-</table>
-
-<footer>
-</footer>
+    <footer>
+    </footer>
 </body>
 
 </html>

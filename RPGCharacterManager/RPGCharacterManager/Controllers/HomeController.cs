@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RPGCharacterManager.Models.User;
+using RPGCharacterManager.Models.Character;
 
 namespace RPGCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
+        static User user = new User()
+        {
+            UserId = 0,
+            Username = "TestUser",
+            Email = "MyTeamName@Mailinator.com",
+            Password = "Password!",
+            Characters = new List<Character>(),
+        };
+
         public IActionResult Index()
         {
             return View();
@@ -58,6 +69,11 @@ namespace RPGCharacterManager.Controllers
         public IActionResult SignUp(string email, string username, string password, string passwordverification)
         {
             return RedirectToAction("Characters");
+        }
+
+        public IActionResult Characters()
+        {
+            return View(user);
         }
     }
 }
