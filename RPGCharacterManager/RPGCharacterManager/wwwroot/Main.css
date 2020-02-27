@@ -87,3 +87,16 @@ table {
 .topnavLower {
     margin:15px;
 }
+
+table {
+    border: solid 1px brown;
+}
+
+    table thead {
+        background-color: #734D2D;
+        color: antiquewhite;
+    }
+
+    table td, table th {
+        padding: 10px;
+    }
