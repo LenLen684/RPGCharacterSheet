@@ -33,11 +33,11 @@
                     <td>@c.CharInfo.Race</td>
                     <td>@c.CharInfo.Class</td>
                     <td>@c.CharInfo.Level</td>
-                    <td><a asp-action="Update" asp-route-resID="@c.CharacterID">Update</a></td>
+                    <td><a class="btn" asp-action="Update" asp-route-resID="@c.CharacterID">Update</a></td>
                     <td>
                         <form asp-action="Delete" method="post">
                             <input type="hidden" name="resID" value="@c.CharacterID" />
-                            <button type="submit">Delete</button>
+                            <button class="btn" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -45,6 +45,7 @@ body {
 a {
     text-decoration: none;
     color: antiquewhite;
+    background-color: #734D2D;
     border: groove 2px #F2C063;
     padding: 3px;
     margin: 10px;
@@ -90,6 +91,7 @@ table {
 
 table {
     border: solid 1px brown;
+    margin:0 auto;
 }
 
     table thead {
