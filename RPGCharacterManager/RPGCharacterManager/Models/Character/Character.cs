@@ -7,6 +7,10 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Character
     {
+        public static int IDCounter = 0;
+
+        public int CharacterID { get; set; } = 0;
+
         //Character Basic Info
         public CharacterInfo CharInfo { get; set; }
 

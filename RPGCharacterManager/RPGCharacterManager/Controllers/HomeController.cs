@@ -81,6 +81,7 @@ namespace RPGCharacterManager.Controllers
             foreach(Character c in user.Characters)
             {
                 c.CreateRandomCharacter();
+                c.CharacterID = Character.IDCounter++;
             }
 
             return View(user);
