@@ -5,17 +5,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 using RPGCharacterManager.Models.User;
+using RPGCharacterManager.Models.Character;
+using RPGCharacterManager.Models.DatabaseContexts;
 
 namespace RPGCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly Class database;
+        private readonly UsersDataContext database;
 
-        public HomeController( Class db ) : base()
+        public HomeController( UsersDataContext db ) : base()
         {
             database = db;
         }
+
+        static User user = new User()
+        {
+            UserId = 0,
+            Username = "TestUser",
+            Email = "MyTeamName@Mailinator.com",
+            Password = "Password!",
+            Characters = new List<Character>()
+            {
+                new Character(),
+                new Character(),
+                new Character()
+            }
+        };
+
         public IActionResult Index()
         {
             return View();
@@ -36,9 +53,9 @@ namespace RPGCharacterManager.Controllers
             //database.AddAsync<TestingModel>(m);
             database.SaveChangesAsync();
             TestingModel model = m;*/
-            if ( database.Testings != null && database.Testings.Any())
+            if ( database.Users != null && database.Users.Any())
             {
-                return View(database.Testings);
+                return View(database.Users);
                 /*
                 if ( database.Testings.Any() )
                 {
@@ -60,7 +77,7 @@ namespace RPGCharacterManager.Controllers
         public IActionResult LogIn(string username, string password)
         {
             bool InDatabase = false;
-            bool IsUsername = username.Contains("@");
+            bool IsUsername = username.Contains("@"); // Hey cowboy, get the users table by saying database.Users, It returns an Ienumerable<User> so it's a list of users, do as you please with it, ask oscar how to edit the database'
             if (IsUsername)
             {
                 //InDatabase = Check database for emails that are similar
@@ -102,6 +119,17 @@ namespace RPGCharacterManager.Controllers
         public IActionResult SignUp(string email, string username, string password, string passwordverification)
         {
             return RedirectToAction("Characters");
+        }
+
+        public IActionResult Characters()
+        {
+            foreach(Character c in user.Characters)
+            {
+                c.CreateRandomCharacter();
+                c.CharacterID = Character.IDCounter++;
+            }
+
+            return View(user);
         }
     }
 }

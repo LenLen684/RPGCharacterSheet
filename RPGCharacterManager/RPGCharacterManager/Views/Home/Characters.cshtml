@@ -1,27 +1,52 @@
-﻿<html>
+﻿@model User
+
+@{
+    ViewData["Title"] = "Characters";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<html>
 <head>
 
 </head>
 
 <body>
-<h1>
-    Welcome to the character page
-</h1>
-<table>
-    <thead>
-    <tr>
-        Name
-    <tr/>
-    </thead>
-    <tbody>
-    <tr>
+    <h1>
+        Viewing All Characters
+    </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Character Name</th>
+                <th>Character Race</th>
+                <th>Character Class</th>
+                <th>Character Level</th>
+                <th></th>
+                <th></th>
+            <tr />
+        </thead>
+        <tbody>
+            @foreach (Character c in Model.Characters)
+            {
+                <tr>
+                    <td>@c.CharInfo.CharName</td>
+                    <td>@c.CharInfo.Race</td>
+                    <td>@c.CharInfo.Class</td>
+                    <td>@c.CharInfo.Level</td>
+                    <td><a class="btn" asp-action="Update" asp-route-resID="@c.CharacterID">Update</a></td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" name="resID" value="@c.CharacterID" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-    </tr>
-    </tbody>
-</table>
-
-<footer>
-</footer>
+    <footer>
+    </footer>
 </body>
 
 </html>

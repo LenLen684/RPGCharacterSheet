@@ -45,6 +45,7 @@ body {
 a {
     text-decoration: none;
     color: antiquewhite;
+    background-color: #734D2D;
     border: groove 2px #F2C063;
     padding: 3px;
     margin: 10px;
@@ -83,3 +84,21 @@ table {
     padding: 4px 2px 4px 2px;
     border: #000000 1px solid;
 }
+
+.topnavLower {
+    margin:15px;
+}
+
+table {
+    border: solid 1px brown;
+    margin:0 auto;
+}
+
+    table thead {
+        background-color: #734D2D;
+        color: antiquewhite;
+    }
+
+    table td, table th {
+        padding: 10px;
+    }
