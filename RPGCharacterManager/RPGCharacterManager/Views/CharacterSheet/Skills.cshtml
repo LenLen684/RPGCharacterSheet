@@ -7,21 +7,22 @@
 
 <h1>Skills</h1>
 
-<p>Acrobatics: @Model.CharSkills.AcrobaticsIsProficient : @Model.CharSkills.AcrobaticsBonus</p>
-<p>Animal Handling: @Model.CharSkills.AnimalHandlingIsProficient : @Model.CharSkills.AnimalHandlingBonus</p>
-<p>Arcana: @Model.CharSkills.ArcanaIsProficient : @Model.CharSkills.ArcanaBonus</p>
-<p>Athetics: @Model.CharSkills.AthleticsIsProficient : @Model.CharSkills.AthleticsBonus</p>
-<p>Deception: @Model.CharSkills.DeceptionIsProficient : @Model.CharSkills.DeceptionBonus</p>
-<p>History: @Model.CharSkills.HistoryIsProficient : @Model.CharSkills.HistoryBonus</p>
-<p>Insight: @Model.CharSkills.InsightIsProficient : @Model.CharSkills.InsightBonus</p>
-<p>Intimidation: @Model.CharSkills.IntimidationIsProficient : @Model.CharSkills.IntimidationBonus</p>
-<p>Investigation: @Model.CharSkills.InvestigationIsProficient : @Model.CharSkills.InvestigationBonus</p>
-<p>Medicine: @Model.CharSkills.MedicineIsProficient : @Model.CharSkills.MedicineBonus</p>
-<p>Nature: @Model.CharSkills.NatureIsProficient : @Model.CharSkills.NatureBonus</p>
-<p>Perception: @Model.CharSkills.PerceptionIsProficient : @Model.CharSkills.PerceptionBonus</p>
-<p>Performance: @Model.CharSkills.PerformanceIsProficient : @Model.CharSkills.PerformanceBonus</p>
-<p>Persuasion: @Model.CharSkills.PersuasionIsProficient : @Model.CharSkills.PersuasionBonus</p>
-<p>Religion: @Model.CharSkills.ReligionIsProficient : @Model.CharSkills.ReligionBonus</p>
-<p>Sleight of Hand: @Model.CharSkills.SleightOfHandIsProficient : @Model.CharSkills.SleightOfHandBonus</p>
-<p>Stealth: @Model.CharSkills.StealthIsProficient : @Model.CharSkills.StealthBonus</p>
-<p>Survival: @Model.CharSkills.SurvivalIsProficient : @Model.CharSkills.SurvivalBonus</p>
+
+@{ 
+    foreach(Skill skill in @Model.CharSkills.CharSkills)
+    {
+        <p>@skill.SkillName: @skill.IsProficient : @skill.Bonus</p>
+    }
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Proficient</th>
+            <th>Bonus</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

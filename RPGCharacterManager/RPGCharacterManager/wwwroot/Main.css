@@ -102,3 +102,9 @@ table {
     table td, table th {
         padding: 10px;
     }
+
+.FloatingButton {
+    position: fixed;
+    bottom: 5%;
+    right: 20%;
+}
