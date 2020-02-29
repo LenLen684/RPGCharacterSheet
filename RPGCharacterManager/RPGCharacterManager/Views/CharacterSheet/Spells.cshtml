@@ -7,9 +7,24 @@
 
 <h1>Spells</h1>
 
-@{ 
-    foreach(Spell spell in @Model.Spells.Spells)
-    {
-        <p>@spell.SpellName: Level: @spell.SpellLevel, @spell.SpellDescription</p>
-    }
-}
+<table>
+    <thead>
+        <tr>
+            <th>SPELL NAME</th>
+            <th>SPELL DESCRIPTION</th>
+            <th>SPELL LEVEL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Spell spell in @Model.Spells.Spells)
+            {
+                <tr>
+                    <th>@spell.SpellName</th>
+                    <th>@spell.SpellDescription</th>
+                    <th>@spell.SpellLevel</th>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
