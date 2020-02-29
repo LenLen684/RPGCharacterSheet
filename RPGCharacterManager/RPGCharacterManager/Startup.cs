@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -5,14 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer;
 using Microsoft.Extensions.Configuration;
 using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
-
 
 namespace RPGCharacterManager
 {
@@ -47,11 +46,16 @@ namespace RPGCharacterManager
                     name: "index",
                     template: "{controller=Home}/{action=Index}"
                     );
+                //--Keeping these here for now to show progress--
                 routes.MapRoute(
-                    name: "Comeback",
-                    template: "{*.}",
-                    defaults: new { controller = "Home", action = "index" }
+                    name: "characters",
+                    template: "{controller=Home}/{action=Characters}/{UserID=000}"
                     );
+                //routes.MapRoute(
+                //    name: "Comeback",
+                //    template: "{*.}",
+                //    defaults: new { controller = "Home", action = "index" }
+                //    );
             });
         }
     }

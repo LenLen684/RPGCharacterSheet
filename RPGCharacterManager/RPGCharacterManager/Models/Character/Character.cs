@@ -14,7 +14,9 @@ namespace RPGCharacterManager.Models.Character
         public Inventory CharInventory { get; set; }
 
         //Features
-        public List<Feature> Features { get; set; }
+        public FeatureList Features { get; set; }
+
+        public Skills CharSkills { get; set; }
 
         //Saving Throws
         public SaveThrows SavingThrows { get; set; }
@@ -30,5 +32,18 @@ namespace RPGCharacterManager.Models.Character
 
         //Proficiencies
         public List<string> Proficiencies { get; set; }
+
+        public void CreateRandomCharacter()
+        {
+            CharInventory = new Inventory();
+            Features = new FeatureList();
+            Spells = new SpellBook();
+            CharWallet = new Wallet();
+            Proficiencies = new List<string>();
+
+            CharStats.RollRandomStats();
+            CharInfo.GenerateRandomCharacterInfo(this);
+            CharStats.CalculateModifiers();
+        }
     }
 }

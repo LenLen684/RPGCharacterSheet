@@ -1,7 +1,69 @@
 ﻿
 @{
     ViewData["Title"] = "CharacterInfo";
-}
+    Layout = "~/Views/_Layout.cshtml";
+    }
 
-<h1>CharacterInfo</h1>
+    @model Character
+    <h1>Character Info Page</h1>
 
+    @*Combat Stats*@
+    <h1>Combat Stats</h1>
+    <p>Current Hit Points: @Model.CharStats.CurrentHP</p>
+    <p>Max Hit Points: @Model.CharStats.MaxHP</p>
+    <p>Temporary Hit Points: @Model.CharStats.TempHP</p>
+
+    <p>Hit Dice: @Model.CharStats.HitDie.ToString()</p>
+    <p>Speed: @Model.CharStats.Speed</p>
+    <p>Initiative: @Model.CharStats.Initiative</p>
+    <p>Armor Class: @Model.CharStats.ArmorClass</p>
+    <p>Inspiration: @Model.CharStats.Inspiration</p>
+    <p>Passive Perception: @Model.CharStats.PassivePerception</p>
+
+    @*Death Saves*@
+    <p>Death Saves (Successes): </p>
+    @{
+        string display = "";
+        foreach (bool save in @Model.CharStats.DeathSaveRolls.SuccessfulSaves)
+        {
+            if (save) display += "x";
+        }
+        <p>@display</p>
+    }
+
+    <p>Death Saves (Fails): </p>
+    @{
+        display = "";
+        foreach (bool save in @Model.CharStats.DeathSaveRolls.FailedSaves)
+        {
+            if (save) display += "x";
+        }
+        <p>@display</p>
+    }
+
+    @*Core Stats*@
+    <h1>Core Stats</h1>
+    <p>Strength: @Model.CharStats.Strength | @Model.CharStats.StrengthMod</p>
+    <p>Dexterity: @Model.CharStats.Dexterity | @Model.CharStats.DexterityMod</p>
+    <p>Constitution: @Model.CharStats.Constitution | @Model.CharStats.ConstitutionMod</p>
+    <p>Intelligence: @Model.CharStats.Intelligence | @Model.CharStats.IntelligenceMod</p>
+    <p>Wisdom: @Model.CharStats.Wisdom | @Model.CharStats.WisdomMod</p>
+    <p>Charisma: @Model.CharStats.Charisma | @Model.CharStats.CharismaMod</p>
+
+    @*Experience*@
+    <h1>Experience</h1>
+    <p>@Model.CharInfo.CurrentEXP / @Model.CharInfo.GoalEXP</p>
+
+    @*Character*@
+    <h1>Character</h1>
+    <p>Class: @Model.CharInfo.Class</p>
+    <p>Level: @Model.CharInfo.Level</p>
+    <p>Alignment: @Model.CharInfo.Alignment</p>
+    <p>Race: @Model.CharInfo.Race</p>
+    <p>Player Name: @Model.CharInfo.PlayerName</p>
+    <p>Background: @Model.CharInfo.Background</p>
+    <p>Character Name: @Model.CharInfo.CharName</p>
+    <p>Personality Traits: @Model.CharInfo.BackgroundInfo[0]</p>
+    <p>Ideals: @Model.CharInfo.BackgroundInfo[1]</p>
+    <p>Bonds: @Model.CharInfo.BackgroundInfo[2]</p>
+    <p>Flaws: @Model.CharInfo.BackgroundInfo[3]</p>
