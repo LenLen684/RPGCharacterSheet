@@ -8,12 +8,6 @@
 <h1>Skills</h1>
 
 
-@{ 
-    foreach(Skill skill in @Model.CharSkills.CharSkills)
-    {
-        <p>@skill.SkillName: @skill.IsProficient : @skill.Bonus</p>
-    }
-}
 
 <table>
     <thead>
@@ -24,5 +18,15 @@
         </tr>
     </thead>
     <tbody>
+@{ 
+    foreach(Skill skill in @Model.CharSkills.CharSkills)
+    {
+        <tr>
+            <th>@skill.SkillName</th> 
+            <th>@skill.IsProficient </th>
+            <th>@skill.Bonus</th>
+        </tr>
+    }
+}
     </tbody>
 </table>
