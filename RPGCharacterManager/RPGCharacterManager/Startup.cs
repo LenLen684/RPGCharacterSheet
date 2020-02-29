@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer;
 using Microsoft.Extensions.Configuration;
+using RPGCharacterManager.Models;
+using RPGCharacterManager.Models.DatabaseContexts;
 using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 
 namespace RPGCharacterManager
@@ -29,10 +31,10 @@ namespace RPGCharacterManager
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
-            services.AddDbContext<Class>(options =>
+            services.AddDbContext<UsersDataContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            services.BuildServiceProvider().GetService<Class>().Database.Migrate();
+            services.BuildServiceProvider().GetService<UsersDataContext>().Database.Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

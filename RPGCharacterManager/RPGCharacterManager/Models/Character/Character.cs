@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace RPGCharacterManager.Models.Character
     {
         public static int IDCounter = 0;
 
+        [Key]
         public int CharacterID { get; set; } = 0;
 
         //Character Basic Info
