@@ -99,7 +99,7 @@ namespace RPGCharacterManager.Models.Character
                         character.Features.AddFeature("Trance", "You do not need sleep, but instead must meditate in a semiconscious state for 4 hours to feel rested.");
                         character.Proficiencies.Add("Read/Write and Speak Common");
                         character.Proficiencies.Add("Read/Write and Speak Elvish");
-                        character.CharSkills.PerceptionIsProficient = true;
+                        character.CharSkills.CharSkills[11].IsProficient = true;
                     }
 
                     break;
@@ -405,269 +405,34 @@ namespace RPGCharacterManager.Models.Character
                         bool alreadyChosen = false;
                         string firstChoice = skills.ElementAt(rng.Next(0, skills.Count));
 
-                        switch (firstChoice)
+                        //Set proficiency based on skill name
+                        for(int i = 0; i < character.CharSkills.CharSkills.Length; i++)
                         {
-                            case "Acrobatics":
-                                character.CharSkills.AcrobaticsIsProficient = true;
+                            if(character.CharSkills.CharSkills[i].SkillName == firstChoice)
+                            {
+                                character.CharSkills.CharSkills[i].IsProficient = true;
                                 break;
-                            case "Animal Handling":
-                                character.CharSkills.AnimalHandlingIsProficient = true;
-                                break; 
-                            case "Arcana":
-                                character.CharSkills.ArcanaIsProficient = true;
-                                break; 
-                            case "Athletics":
-                                character.CharSkills.AthleticsIsProficient = true;
-                                break; 
-                            case "Deception":
-                                character.CharSkills.DeceptionIsProficient = true;
-                                break; 
-                            case "History":
-                                character.CharSkills.HistoryIsProficient = true;
-                                break; 
-                            case "Insight":
-                                character.CharSkills.InsightIsProficient = true;
-                                break; 
-                            case "Intimidation":
-                                character.CharSkills.IntimidationIsProficient = true;
-                                break; 
-                            case "Investigation":
-                                character.CharSkills.InvestigationIsProficient = true;
-                                break; 
-                            case "Medicine":
-                                character.CharSkills.MedicineIsProficient = true;
-                                break; 
-                            case "Nature":
-                                character.CharSkills.NatureIsProficient = true;
-                                break; 
-                            case "Perception":
-                                character.CharSkills.PerceptionIsProficient = true;
-                                break; 
-                            case "Performance":
-                                character.CharSkills.PerformanceIsProficient = true;
-                                break; 
-                            case "Persuasion":
-                                character.CharSkills.PersuasionIsProficient = true;
-                                break; 
-                            case "Religion":
-                                character.CharSkills.ReligionIsProficient = true;
-                                break; 
-                            case "Sleight of Hand":
-                                character.CharSkills.SleightOfHandIsProficient = true;
-                                break; 
-                            case "Stealth":
-                                character.CharSkills.StealthIsProficient = true;
-                                break;
-                            case "Survival":
-                                character.CharSkills.SurvivalIsProficient = true;
-                                break;
+                            }
                         }
 
                         do
                         {
+                            //Set second proficiency based on skill name if it's not already proficient
                             string secondChoice = skills.ElementAt(rng.Next(0, skills.Count));
-                            switch (secondChoice)
+
+                            for(int i = 0; i < character.CharSkills.CharSkills.Length; i++)
                             {
-                                case "Acrobatics":
-                                    if (character.CharSkills.AcrobaticsIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
+                                if(character.CharSkills.CharSkills[i].SkillName == secondChoice)
+                                {
+                                    if (character.CharSkills.CharSkills[i].IsProficient) alreadyChosen = true;
                                     else
                                     {
-                                        character.CharSkills.AcrobaticsIsProficient = true;
+                                        character.CharSkills.CharSkills[i].IsProficient = true;
                                         alreadyChosen = false;
+                                        break;
                                     }
-                                    break;
-                                case "Animal Handling":
-                                    if (character.CharSkills.AnimalHandlingIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.AnimalHandlingIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Arcana":
-                                    if (character.CharSkills.ArcanaIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.ArcanaIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Athletics":
-                                    if (character.CharSkills.AthleticsIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.AthleticsIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Deception":
-                                    if (character.CharSkills.DeceptionIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.DeceptionIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "History":
-                                    if (character.CharSkills.HistoryIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.HistoryIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Insight":
-                                    if (character.CharSkills.InsightIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.InsightIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Intimidation":
-                                    if (character.CharSkills.IntimidationIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.IntimidationIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Investigation":
-                                    if (character.CharSkills.InvestigationIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.InvestigationIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Medicine":
-                                    if (character.CharSkills.MedicineIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.MedicineIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Nature":
-                                    if (character.CharSkills.NatureIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.NatureIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Perception":
-                                    if (character.CharSkills.PerceptionIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.PerceptionIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Performance":
-                                    if (character.CharSkills.PerformanceIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.PerformanceIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Persuasion":
-                                    if (character.CharSkills.PersuasionIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.PersuasionIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Religion":
-                                    if (character.CharSkills.ReligionIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.ReligionIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Sleight of Hand":
-                                    if (character.CharSkills.SleightOfHandIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.SleightOfHandIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Stealth":
-                                    if (character.CharSkills.StealthIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.StealthIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
-                                case "Survival":
-                                    if (character.CharSkills.SurvivalIsProficient)
-                                    {
-                                        alreadyChosen = true;
-                                    }
-                                    else
-                                    {
-                                        character.CharSkills.SurvivalIsProficient = true;
-                                        alreadyChosen = false;
-                                    }
-                                    break;
+                                }
                             }
-                            
                         } while (alreadyChosen);
 
                     }
@@ -686,7 +451,7 @@ namespace RPGCharacterManager.Models.Character
                         character.Features.AddFeature("Savage Attacks", "When you score a critical hit you can add 1 of the weapons damage dice one time to the critical damage.");
                         character.Proficiencies.Add("Read/Write and Speak Common");
                         character.Proficiencies.Add("Read/Write and Speak Orc");
-                        character.CharSkills.IntimidationIsProficient = true;
+                        character.CharSkills.CharSkills[7].IsProficient = true;
                     }
 
                     break;
@@ -1081,71 +846,15 @@ namespace RPGCharacterManager.Models.Character
             {
                 Background = bgName;
 
+                //Set proficient if skill number in skillProfs matches the index
                 if (skillProfs != null)
                 {
-                    foreach (int i in skillProfs)
+                    for(int i = 0; i < skillProfs.Length; i++)
                     {
-                        eSkill skill = (eSkill)i;
-                        switch (skill)
+                        for(int j = 0; j < character.CharSkills.CharSkills.Length; j++)
                         {
-                            case eSkill.ACROBATICS:
-                                character.CharSkills.AcrobaticsIsProficient = true;
-                                break;
-                            case eSkill.ANIMALHANDLING:
-                                character.CharSkills.AnimalHandlingIsProficient = true;
-                                break;
-                            case eSkill.ARCANA:
-                                character.CharSkills.ArcanaIsProficient = true;
-                                break;
-                            case eSkill.ATHLETICS:
-                                character.CharSkills.AthleticsIsProficient = true;
-                                break;
-                            case eSkill.DECEPTION:
-                                character.CharSkills.DeceptionIsProficient = true;
-                                break;
-                            case eSkill.HISTORY:
-                                character.CharSkills.HistoryIsProficient = true;
-                                break;
-                            case eSkill.INSIGHT:
-                                character.CharSkills.InsightIsProficient = true;
-                                break;
-                            case eSkill.INTIMIDATION:
-                                character.CharSkills.IntimidationIsProficient = true;
-                                break;
-                            case eSkill.INVESTIGATION:
-                                character.CharSkills.InvestigationIsProficient = true;
-                                break;
-                            case eSkill.MEDICINE:
-                                character.CharSkills.MedicineIsProficient = true;
-                                break;
-                            case eSkill.NATURE:
-                                character.CharSkills.NatureIsProficient = true;
-                                break;
-                            case eSkill.PERCEPTION:
-                                character.CharSkills.PerceptionIsProficient = true;
-                                break;
-                            case eSkill.PERFORMANCE:
-                                character.CharSkills.PerformanceIsProficient = true;
-                                break;
-                            case eSkill.PERSUASION:
-                                character.CharSkills.PersuasionIsProficient = true;
-                                break;
-                            case eSkill.RELIGION:
-                                character.CharSkills.ReligionIsProficient = true;
-                                break;
-                            case eSkill.SLEIGHTOFHAND:
-                                character.CharSkills.SleightOfHandIsProficient = true;
-                                break;
-                            case eSkill.STEALTH:
-                                character.CharSkills.StealthIsProficient = true;
-                                break;
-                            case eSkill.SURVIVAL:
-                                character.CharSkills.SurvivalIsProficient = true;
-                                break;
-                            default:
-                                break;
-                        }
-                        
+                            if (skillProfs[i] == j) character.CharSkills.CharSkills[j].IsProficient = true;
+                        }                        
                     }
                 }
             }
@@ -1283,413 +992,38 @@ namespace RPGCharacterManager.Models.Character
                 bool exists = false;
                 int rand = 0;
                 int counter = 0;
+
                 for (int i = 0; i < skillCount; i++)
                 {
                     do
                     {
                         rand = skillProfs[rng.Next(0, skillProfs.Length)];
-                        eSkill skill = (eSkill)rand;
 
-                        switch (skill)
+                        //Find skill that matches skills in array
+                        for (int k = 0; k < skillProfs.Length; k++)
                         {
-                            case eSkill.ACROBATICS:
-                                if (character.CharSkills.AcrobaticsIsProficient == true)
+                            for (int j = 0; j < character.CharSkills.CharSkills.Length; j++)
+                            {
+                                if (skillProfs[k] == j)
                                 {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.AcrobaticsIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.AcrobaticsIsProficient == true)
+                                    //Continues loop if proficient
+                                    if (character.CharSkills.CharSkills[j].IsProficient) exists = true;
+                                    else
                                     {
-                                        counter++;
+                                        //Set proficient then exit loop
+                                        character.CharSkills.CharSkills[j].IsProficient = true;
+                                        exists = false;
                                     }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.ANIMALHANDLING:
-                                if (character.CharSkills.AnimalHandlingIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.AnimalHandlingIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.AnimalHandlingIsProficient == true)
+                                    for (; i < skillProfs.Count(); i++)
                                     {
-                                        counter++;
+                                        //Check if all skills are proficient
+                                        if (character.CharSkills.CharSkills[j].IsProficient) counter++; 
                                     }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.ARCANA:
-                                if (character.CharSkills.ArcanaIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.ArcanaIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.ArcanaIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.ATHLETICS:
-                                if (character.CharSkills.AthleticsIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.AthleticsIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.AthleticsIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.DECEPTION:
-                                if (character.CharSkills.DeceptionIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.DeceptionIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.DeceptionIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.HISTORY:
-                                if (character.CharSkills.HistoryIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.HistoryIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.HistoryIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.INSIGHT:
-                                if (character.CharSkills.InsightIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.InsightIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.InsightIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.INTIMIDATION:
-                                if (character.CharSkills.IntimidationIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.IntimidationIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.IntimidationIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.INVESTIGATION:
-                                if (character.CharSkills.InvestigationIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.InvestigationIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.InvestigationIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.MEDICINE:
-                                if (character.CharSkills.MedicineIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.MedicineIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.MedicineIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.NATURE:
-                                if (character.CharSkills.NatureIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.NatureIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.NatureIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.PERCEPTION:
-                                if (character.CharSkills.PerceptionIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.PerceptionIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.PerceptionIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.PERFORMANCE:
-                                if (character.CharSkills.PerformanceIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.PerformanceIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.PerformanceIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.PERSUASION:
-                                if (character.CharSkills.PersuasionIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.PersuasionIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.PersuasionIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.RELIGION:
-                                if (character.CharSkills.ReligionIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.ReligionIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.ReligionIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.SLEIGHTOFHAND:
-                                if (character.CharSkills.SleightOfHandIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.SleightOfHandIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.SleightOfHandIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.STEALTH:
-                                if (character.CharSkills.StealthIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.StealthIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.StealthIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            case eSkill.SURVIVAL:
-                                if (character.CharSkills.SurvivalIsProficient == true)
-                                {
-                                    exists = true;
-                                }
-                                else
-                                {
-                                    character.CharSkills.SurvivalIsProficient = true;
-                                    exists = false;
-                                }
-                                for (int iter = 0; i < skillProfs.Count(); i++)
-                                {
-                                    if (character.CharSkills.SurvivalIsProficient == true)
-                                    {
-                                        counter++;
-                                    }
-                                }
-                                if (counter == skillProfs.Count())
-                                {
-                                    exists = false;
-                                }
-                                break;
-                            default:
-                                break;
+
+                                    //Exit loop if all skills are proficient
+                                    if (counter == skillProfs.Count()) exists = false;
+                                }
+                            }
                         }
                     }
                     while (exists);
@@ -1721,8 +1055,6 @@ namespace RPGCharacterManager.Models.Character
                         character.Features.AddFeature(featureNames.ElementAt(i), featureDescs.ElementAt(i));
                     }
             }
-
-
         }
     }
 }
