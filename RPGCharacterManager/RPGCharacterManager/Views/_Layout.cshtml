@@ -6,10 +6,16 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div id="main">
-        <div id="content">
-            @RenderBody()
-        </div>
+<header>
+    <img id="special" src="~/Images/VideoGames.jfif" height="800" />
+    <ol>
+        <li><a asp-controller="Home" asp-action="testingPage">TESTING</a></li>
+    </ol>
+</header>
+<div id="main">
+    <div id="content">
+        @RenderBody()
     </div>
+</div>
 </body>
 </html>
