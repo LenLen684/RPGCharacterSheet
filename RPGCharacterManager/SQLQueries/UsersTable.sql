@@ -1,13 +1,9 @@
 ﻿/****** Object:  Table [dbo].[Users]    Script Date: 2/22/2020 12:15:27 AM ******/
-DROP TABLE [dbo].[Users]
-GO
+--If [dbo].[Users] exists 
+--DROP TABLE [dbo].[Users]
+--GO
 
 /****** Object:  Table [dbo].[Users]    Script Date: 2/22/2020 12:15:27 AM ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
 
 CREATE TABLE [dbo].[Users](
 	[UserID] [bigint] NOT NULL primary key,
