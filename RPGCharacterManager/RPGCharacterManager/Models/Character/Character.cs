@@ -12,30 +12,32 @@ namespace RPGCharacterManager.Models.Character
         public int CharacterID { get; set; } = 0;
 
         //Character Basic Info
-        public CharacterInfo CharInfo { get; set; }
+        public CharacterInfo CharInfo { get; set; } = new CharacterInfo();
 
         //Inventory
-        public Inventory CharInventory { get; set; }
+        public Inventory CharInventory { get; set; } = new Inventory();
 
         //Features
-        public FeatureList Features { get; set; }
+        public FeatureList Features { get; set; } = new FeatureList();
 
-        public Skills CharSkills { get; set; }
+        public Skills CharSkills { get; set; } = new Skills();
 
         //Saving Throws
-        public SaveThrows SavingThrows { get; set; }
+        public SaveThrows SavingThrows { get; set; } = new SaveThrows();
 
         //Known Spells
-        public SpellBook Spells { get; set; }
+        public SpellBook Spells { get; set; } = new SpellBook();
 
         //Character's Main Stats
-        public Stats CharStats { get; set; }
+        public Stats CharStats { get; set; } = new Stats();
 
         //Wallet
-        public Wallet CharWallet { get; set; }
+        public Wallet CharWallet { get; set; } = new Wallet();
 
         //Proficiencies
-        public List<string> Proficiencies { get; set; }
+        public List<string> Proficiencies { get; set; } = new List<string>();
+
+        public string ProficiencyField { get; set; }
 
         public void CreateRandomCharacter()
         {
