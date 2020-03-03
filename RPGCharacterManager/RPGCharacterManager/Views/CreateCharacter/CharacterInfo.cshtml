@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewData["Title"] = "CharacterInfo";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model Character
+<h1>Character Info Page</h1>
+
+@*DIRECT CHARACTER INFO TABLE*@
+<table>
+    <thead>
+        <tr>
+            <th>CHARACTER NAME</th>
+            <th>CHARACTER RACE</th>
+            <th>CHARACTER CLASS</th>
+            <th>ALIGNMENT</th>
+            <th>PLAYERNAME</th>
+            <th>CHARACTER LEVEL</th>
+            <th>EXPERIENCE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.CharInfo.CharName</th>
+            <th>@Model.CharInfo.Race</th>
+            <th>@Model.CharInfo.Class</th>
+            <th>@Model.CharInfo.Alignment</th>
+            <th>@Model.CharInfo.PlayerName</th>
+            <th>@Model.CharInfo.Level</th>
+            <th>@Model.CharInfo.CurrentEXP / @Model.CharInfo.GoalEXP</th>
+        </tr>
+    </tbody>
+
+</table>
+
+<p></p>
+
+@*CHARACTER BACKGROUND TABLE*@
+<table>
+    <thead>
+        <tr>
+            <th>BACKGROUND</th>
+            <th>PERSONALIY TRAITS</th>
+            <th>IDEALS</th>
+            <th>BONDS</th>
+            <th>FLAWS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.CharInfo.Background</th>
+            <th>@Model.CharInfo.BackgroundInfo[0]</th>
+            <th>@Model.CharInfo.BackgroundInfo[1]</th>
+            <th>@Model.CharInfo.BackgroundInfo[2]</th>
+            <th>@Model.CharInfo.BackgroundInfo[3]</th>
+        </tr>
+    </tbody>
+</table>
+
+<p></p>
+
+@*CHARACTER CORE STATS TABLE*@
+<table>
+
+    <thead>
+        <tr>
+            <th>STRENGTH</th>
+            <th>STRENGTH MODIFIER</th>
+            <th>DEXTERITY</th>
+            <th>DEXTERITY MODIFIER</th>
+            <th>CONSTITUTION</th>
+            <th>CONSTITUTION MODIFIER</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.CharStats.Strength</th>
+            <th>@Model.CharStats.StrengthMod</th>
+            <th>@Model.CharStats.Dexterity</th>
+            <th>@Model.CharStats.DexterityMod</th>
+            <th>@Model.CharStats.Constitution</th>
+            <th>@Model.CharStats.ConstitutionMod</th>
+        </tr>
+    </tbody>
+
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th>INTELLIGENCE</th>
+            <th>INTELLIGENCE MODIFIER</th>
+            <th>WISDOM</th>
+            <th>WISDOM MODIFIER</th>
+            <th>CHARISMA</th>
+            <th>CHARISMA MODIFIER</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.CharStats.Intelligence</th>
+            <th>@Model.CharStats.IntelligenceMod</th>
+            <th>@Model.CharStats.Wisdom</th>
+            <th>@Model.CharStats.WisdomMod</th>
+            <th>@Model.CharStats.Charisma</th>
+            <th>@Model.CharStats.CharismaMod</th>
+        </tr>
+    </tbody>
+</table>
+
+<p></p>
+
+@*COMBAT STATS*@
+<table>
+    <thead>
+        <tr>
+            <th>ARMOR CLASS</th>
+            <th>INITIATIVE</th>
+            <th>SPEED</th>
+            <th>INSPIRATION</th>
+            <th>MAX HEALTH</th>
+            <th>CURRENT HEALTH</th>
+            <th>TEMPORARY HEALTH</th>
+            <th>HIT DICE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.CharStats.ArmorClass</th>
+            <th>@Model.CharStats.Initiative</th>
+            <th>@Model.CharStats.Speed</th>
+            <th>@Model.CharStats.Inspiration</th>
+            <th>@Model.CharStats.MaxHP</th>
+            <th>@Model.CharStats.CurrentHP</th>
+            <th>@Model.CharStats.TempHP</th>
+            <th>@Model.CharStats.HitDie.ToString()</th>
+        </tr>
+    </tbody>
+</table>
+
+<p></p>
+
+@*DEATH SAVES*@
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>DEATH SAVES</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>SUCCESSES</th>
+            <th>
+                @{
+                    string succdisplay = "";
+                    foreach (bool save in @Model.CharStats.DeathSaveRolls.SuccessfulSaves)
+                    {
+                        if (save) succdisplay += "[X]";
+                        if (!save) succdisplay += "[O]";
+                    }
+                }
+                @succdisplay
+            </th>
+            <th>ADD SUCCESS</th>
+            <th>REMOVE SUCCESS</th>
+            <th>CLEAR SUCCESS</th>
+        </tr>
+        <tr>
+            <th>FAILURES</th>
+            <th>
+                @{
+                    string faildisplay = "";
+                    foreach (bool save in @Model.CharStats.DeathSaveRolls.FailedSaves)
+                    {
+                        if (save) faildisplay += "[X]";
+                        if (!save) faildisplay += "[O]";
+                    }
+                }
+                @faildisplay
+            </th>
+            <th>ADD FAILURE</th>
+            <th>REMOVE FAILURE</th>
+            <th>CLEAR FAILURE</th>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
