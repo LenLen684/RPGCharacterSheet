@@ -7,11 +7,13 @@ using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 using RPGCharacterManager.Models.User;
 using RPGCharacterManager.Models.Character;
 using RPGCharacterManager.Models.DatabaseContexts;
+using BCrypt.Net;
 
 namespace RPGCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
+        private Random rng = new Random();
         private readonly UsersDataContext database;
 
         public HomeController( UsersDataContext db ) : base()
@@ -79,9 +81,10 @@ namespace RPGCharacterManager.Controllers
         {
             username = username.ToLower();
             bool InDatabase = false;
-            bool IsUsername = username.Contains("@"); // Hey cowboy, get the users table by saying database.Users, It returns an Ienumerable<User> so it's a list of users, do as you please with it, ask oscar how to edit the database'
-            if (IsUsername)
+            bool IsEmail = username.Contains("@"); // Hey cowboy, get the users table by saying database.Users, It returns an Ienumerable<User> so it's a list of users, do as you please with it, ask oscar how to edit the database'
+            if (IsEmail)
             {
+                //InDatabase = Check database for emails that are similar
                 foreach ( User user in database.Users )
                 {
                     if ( user.Email.Equals(username) )
@@ -90,10 +93,10 @@ namespace RPGCharacterManager.Controllers
                         break;
                     }
                 }
-                //InDatabase = Check database for emails that are similar
             }
             else
             {
+                //InDatabase = Check for usernames in the database
                 foreach ( User user in database.Users )
                 {
                     if ( user.Username.Equals(username) )
@@ -102,57 +105,30 @@ namespace RPGCharacterManager.Controllers
                         break;
                     }
                 }
-                //InDatabase = Check for usernames in the database
             }
 
             if ( InDatabase )
             {
-                User u = database.Users.FirstOrDefault(u => u.Username.Equals(username));
-                if ( u.Password.Equals(password) )
+                User u = IsEmail? database.Users.FirstOrDefault(u => u.Email.Equals(username)) : database.Users.FirstOrDefault(u => u.Username.Equals(username));
+                if ( BCrypt.Net.BCrypt.Verify(password, u.Password))
                 {
                     UsersDataContext.currentUser = u;
                     return View("Index", u);
                 }
             }
-            /*
-             * if(InDatabase)
-             * {    
-             *       if(IsUsername){
-             *          if(--Check if password matches username--)
-             *          {
-             *              return RedirectToAction("Characters", --UserID--);
-             *          } else {
-             *              break;
-             *          }
-             *       }
-             *       else
-             *       {
-             *          if(--Check if password matches email--)
-             *          {
-             *              return RedirectToAction("Characters", --UserID--);
-             *          } else {
-             *              break;
-             *          }
-             *       }
-             * } 
-             * else
-             * {
-             * 
-             * }
-             */
-
             return RedirectToAction("Index",UsersDataContext.currentUser);
         }
 
         
         public IActionResult SignUp(string email, string username, string password, string passwordverification)
         {
+            SaltRevision salt = (SaltRevision)Enum.GetValues(typeof(SaltRevision)).GetValue(rng.Next(Enum.GetValues(typeof(SaltRevision)).Length));
             if ( password.Equals(passwordverification) )
             {
                 User u = new User();
                 u.Username = username;
                 u.Email = email;
-                u.Password = password;
+                u.Password = BCrypt.Net.BCrypt.HashPassword(password,12,salt);
                 u.UserId = database.Users.Count() + 2;
                 database.Users.AddAsync(u);
                 database.SaveChangesAsync();
@@ -163,7 +139,7 @@ namespace RPGCharacterManager.Controllers
             {
                 return View("Index");
             }
-            return RedirectToAction("Characters");
+            //return RedirectToAction("Characters");
         }
 
         public IActionResult Characters()
