@@ -8,7 +8,7 @@ namespace RPGCharacterManager.Models.User
 {
     public class User
     {
-        static int currentID = 0;
+        private static int currentID = 0;
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -17,9 +17,9 @@ namespace RPGCharacterManager.Models.User
         public int UserId
         {
             get { return userID; }
-            set { userID = currentID++; }
+            set { userID = value; }
         }
 
-        public List<Character.Character> Characters { get; set; }
+        //public List<Character.Character> Characters { get; set; }
     }
 }
