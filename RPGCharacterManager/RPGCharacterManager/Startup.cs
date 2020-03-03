@@ -31,10 +31,12 @@ namespace RPGCharacterManager
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
+
+            /*
             services.AddDbContext<UsersDataContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            services.BuildServiceProvider().GetService<UsersDataContext>().Database.Migrate();
+            services.BuildServiceProvider().GetService<UsersDataContext>().Database.Migrate();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

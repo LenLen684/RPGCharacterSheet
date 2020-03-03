@@ -15,12 +15,12 @@ namespace RPGCharacterManager.Controllers
     {
         private Random rng = new Random();
         private readonly UsersDataContext database;
-
+        /*
         public HomeController( UsersDataContext db ) : base()
         {
             database = db;
         }
-
+        */
         static User user = new User()
         {
             UserId = 0,
