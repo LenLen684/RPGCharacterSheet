@@ -7,8 +7,8 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Inventory
     {
-        public Item itemField = new Item();
-        public Weapon weaponField = new Weapon();
+        public Item itemField { get; set; } = new Item();
+        public Weapon weaponField { get; set; } = new Weapon();
 
         public List<Item> items { get; set; } = new List<Item>();
 

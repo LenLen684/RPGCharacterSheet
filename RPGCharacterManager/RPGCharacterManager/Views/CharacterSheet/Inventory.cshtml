@@ -57,6 +57,15 @@
                     <th>@item.itemDescription</th>
                 </tr>
             }
+
+            foreach (Weapon item in @Model.CharInventory.weapons)
+            {
+                <tr>
+                    <th>@item.weaponName</th>
+                    <th>@item.weaponDescription </th>
+                    <th>@item.weaponMod</th>
+                </tr>
+            }
         }
     </tbody>
 </table>

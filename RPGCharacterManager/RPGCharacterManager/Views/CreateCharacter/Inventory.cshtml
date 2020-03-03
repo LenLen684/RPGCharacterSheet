@@ -9,51 +9,61 @@
 <form method="post">
 
     @*Wallet*@
-    <p>
-        <label asp-for="CharWallet.copper">Copper amount:</label>
-        <input asp-for="CharWallet.copper" />
-    </p>
-    <p>
-        <label asp-for="CharWallet.silver">Silver amount:</label>
-        <input asp-for="CharWallet.silver" />
-    </p>
-    <p>
-        <label asp-for="CharWallet.gold">Gold amount:</label>
-        <input asp-for="CharWallet.gold" />
-    </p>
-    <p>
-        <label asp-for="CharWallet.electrum">Electrum amount:</label>
-        <input asp-for="CharWallet.electrum" />
-    </p>
-    <p>
-        <label asp-for="CharWallet.platinum">Platinum amount:</label>
-        <input asp-for="CharWallet.platinum" />
-    </p>
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharWallet.copper">Copper amount:</label></th>
+                <th><label asp-for="CharWallet.silver">Silver amount:</label></th>
+                <th><label asp-for="CharWallet.gold">Gold amount:</label></th>
+                <th><label asp-for="CharWallet.electrum">Electrum amount:</label></th>
+                <th><label asp-for="CharWallet.platinum">Platinum amount:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharWallet.copper" /></th>
+                <th><input asp-for="CharWallet.silver" /> </th>
+                <th><input asp-for="CharWallet.gold" /></th>
+                <th><input asp-for="CharWallet.electrum" /></th>
+                <th><input asp-for="CharWallet.platinum" /></th>
+            </tr>
+        </tbody>
+    </table>
 
-    @*Add an item*@
-    <p>
-        <label asp-for="CharInventory.itemField.itemAmount">Item Amount:</label>
-        <input asp-for="CharInventory.itemField.itemAmount" />
-    </p>
-    <p>
-        <label asp-for="CharInventory.itemField.itemName">Item Name:</label>
-        <input asp-for="CharInventory.itemField.itemName" />
-    </p>
-    <p>
-        <label asp-for="CharInventory.itemField.itemDescription">Item Description:</label>
-        <input asp-for="CharInventory.itemField.itemDescription" />
-    </p>
+    @*Item*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.itemField.itemAmount">Item Amount:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemName">Item Name:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemDescription">Item Description:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.itemField.itemAmount" /></th>
+                <th><input asp-for="CharInventory.itemField.itemName" /></th>
+                <th><input asp-for="CharInventory.itemField.itemDescription" /></th>
+            </tr>
+        </tbody>
+    </table>
 
-    @*Add a weapon*@
-    <p>
-        <label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label>
-        <input asp-for="CharInventory.weaponField.weaponName" />
-    </p>
-        <label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label>
-        <input asp-for="CharInventory.weaponField.weaponDescription" />
-    <p>
-        <label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label>
-        <input asp-for="CharInventory.weaponField.weaponMod" />
-    </p>
+    @*Weapon*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.weaponField.weaponName" /></th>
+                <th><input asp-for="CharInventory.weaponField.weaponDescription" /></th>
+                <th><input asp-for="CharInventory.weaponField.weaponMod" /></th>
+            </tr>
+        </tbody>
+    </table>
     <p><button type="submit">Create</button></p>
 </form>

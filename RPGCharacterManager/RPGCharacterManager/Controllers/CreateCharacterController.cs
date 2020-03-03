@@ -37,25 +37,19 @@ namespace RPGCharacterManager.Controllers
             c.CharInventory = new Inventory();
             c.CharInventory.itemField = new Item();
             c.CharInventory.weaponField = new Weapon();
-            return View(c);
+            return View();
         }
 
         [HttpPost]
         public IActionResult Inventory(Character c)
         {
-            ////Reset all of character's field to ensure they're not null
-            //c.CharWallet = new Wallet();
-            //c.CharInventory = new Inventory();
-            //c.CharInventory.itemField = new Item();
-            //c.CharInventory.weaponField = new Weapon();
-
-            //Store item to reduce clutter
-            Item item = c.CharInventory.itemField;
-            c.CharInventory.AddItem(item.itemName, item.itemDescription, item.itemAmount);
+            CharacterSheetController.character.CharWallet = c.CharWallet;
 
             //Set static character information in main page to display new information
-            CharacterSheetController.character.CharInventory = c.CharInventory;
-            CharacterSheetController.character.CharWallet = c.CharWallet;
+            //CharacterSheetController.character.CharInventory = new Inventory();
+            //CharacterSheetController.character.CharInventory.AddItem(c.CharInventory.itemField.itemName, c.CharInventory.itemField.itemDescription, c.CharInventory.itemField.itemAmount);
+            CharacterSheetController.character.CharInventory.items.Add(c.CharInventory.itemField);
+            CharacterSheetController.character.CharInventory.weapons.Add(c.CharInventory.weaponField);
             return RedirectToAction("Inventory", "CharacterSheet");
         }
 
