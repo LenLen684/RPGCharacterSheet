@@ -9,7 +9,7 @@
     </head>
 
     <body>
- 
+    @if (@Model == null){
 
             <div id="login">
                 <p>Log in</p>
@@ -54,8 +54,11 @@
                 </form>
             </div>
 
-        <footer>
-        </footer>
+    <footer>
+    </footer>
+    }else{
+    <p>Youre logged in as @Model.Username !</p>
+    }
     </body>
 
 </html>
