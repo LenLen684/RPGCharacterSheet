@@ -10,7 +10,7 @@ namespace CharacterSheetManager.Controllers
     public class CharacterSheetController : Controller
     {
         //Testing character
-        static Character character = new Character()
+        public static Character character = new Character()
         {
             CharInfo = new CharacterInfo()
             {

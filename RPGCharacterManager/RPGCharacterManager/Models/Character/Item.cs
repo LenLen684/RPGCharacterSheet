@@ -7,9 +7,9 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Item
     {
-        public string itemName { get; set; }
-        public string itemDescription { get; set; }
-        public uint itemAmount { get; set; }
+        public string itemName { get; set; } = "";
+        public string itemDescription { get; set; } = "";
+        public uint itemAmount { get; set; } = 0;
 
     }
 }
