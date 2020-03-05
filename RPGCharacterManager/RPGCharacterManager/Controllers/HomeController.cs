@@ -153,5 +153,12 @@ namespace RPGCharacterManager.Controllers
 
             return View(user);
         }
+
+        public IActionResult LogOut()
+        {
+                UsersDataContext.currentUser = null;
+                return View("Index", UsersDataContext.currentUser);
+            //return RedirectToAction("Characters");
+        }
     }
 }
