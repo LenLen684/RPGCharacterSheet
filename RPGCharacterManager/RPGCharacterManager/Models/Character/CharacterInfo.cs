@@ -57,6 +57,8 @@ namespace RPGCharacterManager.Models.Character
             //BACKGROUND INFO WILL BE DONE IN BACKROUND
         }
 
+        #region Randomization
+
         private void RandomRace(Character character)
         {
             bool statModUsed = false;
@@ -1057,4 +1059,6 @@ namespace RPGCharacterManager.Models.Character
             }
         }
     }
+
+    #endregion
 }

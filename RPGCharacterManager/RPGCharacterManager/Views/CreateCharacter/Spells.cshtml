@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Spells";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Character
+
+<h1>Features/Proficiencies</h1>
+
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="Spells.SpellField.SpellName">Spell Name</label></th>
+                <th><label asp-for="Spells.SpellField.SpellDescription">Spell Description</label></th>
+                <th><label asp-for="Spells.SpellField.SpellLevel">Spell Level</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="Spells.SpellField.SpellName" /></th>
+                <th><input asp-for="Spells.SpellField.SpellDescription" /></th>
+                <th><input asp-for="Spells.SpellField.SpellLevel" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Create</button></p>
+</form>
+
