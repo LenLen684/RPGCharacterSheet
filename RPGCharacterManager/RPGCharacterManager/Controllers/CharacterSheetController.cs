@@ -97,7 +97,7 @@ namespace CharacterSheetManager.Controllers
 
         public IActionResult CharacterInfo()
         {
-            character.CreateRandomCharacter();
+            //character.CreateRandomCharacter();
             return View(character);
         }
 
@@ -119,6 +119,48 @@ namespace CharacterSheetManager.Controllers
         public IActionResult Spells()
         {
             return View(character);
+        }
+
+        public IActionResult AddSucc()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.AddSuccessfulSave();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
+        }
+
+        public IActionResult RemoveSucc()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.RemoveSuccessfulSave();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
+        }
+
+        public IActionResult ClearSucc()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.ResetSuccessfulSaves();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
+        }
+
+        public IActionResult AddFail()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.AddFailedSave();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
+        }
+
+        public IActionResult RemoveFail()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.RemoveFailedSave();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
+        }
+
+        public IActionResult ClearFail()
+        {
+            CharacterSheetController.character.CharStats.DeathSaveRolls.ResetFailedSaves();
+
+            return RedirectToAction("CharacterInfo", "CharacterSheet");
         }
     }
 }

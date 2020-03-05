@@ -1,0 +1,27 @@
+﻿@using RPGCharacterManager.Models.User
+@model IEnumerable<User>
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+<div>
+    @if ( @Model != null )
+    {
+        @foreach ( User m in @Model )
+        {
+            @if ( @Model != null )
+            {
+                <h1> @m.Username | @m.Password </h1>
+            }
+        }
+    }
+</div>
+
+</body>
+
+</html>

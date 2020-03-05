@@ -38,7 +38,6 @@
     </tbody>
 </table>
 
-<p></p>
 
 <table>
     <thead>
@@ -56,15 +55,6 @@
                     <th>@item.itemAmount</th>
                     <th>@item.itemName </th>
                     <th>@item.itemDescription</th>
-                </tr>
-            }
-
-            foreach (Weapon item in @Model.CharInventory.weapons)
-            {
-                <tr>
-                    <th>@item.weaponName</th>
-                    <th>@item.weaponDescription </th>
-                    <th>@item.weaponMod</th>
                 </tr>
             }
         }
