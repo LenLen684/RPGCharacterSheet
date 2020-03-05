@@ -14,10 +14,10 @@ namespace RPGCharacterManager.Controllers
     {
         private readonly UsersDataContext database;
 
-        public HomeController( UsersDataContext db ) : base()
-        {
-            database = db;
-        }
+        //public HomeController( UsersDataContext db ) : base()
+        //{
+        //    database = db;
+        //}
 
         static User user = new User()
         {
@@ -53,19 +53,19 @@ namespace RPGCharacterManager.Controllers
             //database.AddAsync<TestingModel>(m);
             database.SaveChangesAsync();
             TestingModel model = m;*/
-            if ( database.Users != null && database.Users.Any())
-            {
-                return View(database.Users);
-                /*
-                if ( database.Testings.Any() )
-                {
-                    bool o = false;
-                    //if ( database.Testings.Count<TestingModel>() > 0 )
-                    //{
-                        //model = database.Testings.FirstOrDefault(a => a.name == "len");
-                    //}
-                }*/
-            }
+            //if ( database.Users != null && database.Users.Any())
+            //{
+            //    return View(database.Users);
+            //    /*
+            //    if ( database.Testings.Any() )
+            //    {
+            //        bool o = false;
+            //        //if ( database.Testings.Count<TestingModel>() > 0 )
+            //        //{
+            //            //model = database.Testings.FirstOrDefault(a => a.name == "len");
+            //        //}
+            //    }*/
+            //}
             return View();
         }
 
