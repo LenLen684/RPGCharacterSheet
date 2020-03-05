@@ -8,188 +8,174 @@
 <h1>Character Info Page</h1>
 
 @*DIRECT CHARACTER INFO TABLE*@
-<table>
-    <thead>
-        <tr>
-            <th>CHARACTER NAME</th>
-            <th>CHARACTER RACE</th>
-            <th>CHARACTER CLASS</th>
-            <th>ALIGNMENT</th>
-            <th>PLAYERNAME</th>
-            <th>CHARACTER LEVEL</th>
-            <th>EXPERIENCE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>@Model.CharInfo.CharName</th>
-            <th>@Model.CharInfo.Race</th>
-            <th>@Model.CharInfo.Class</th>
-            <th>@Model.CharInfo.Alignment</th>
-            <th>@Model.CharInfo.PlayerName</th>
-            <th>@Model.CharInfo.Level</th>
-            <th>@Model.CharInfo.CurrentEXP / @Model.CharInfo.GoalEXP</th>
-        </tr>
-    </tbody>
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharInfo.CharName">    CHARACTER NAME     </label> </th>
+                <th> <label asp-for="CharInfo.Class">       CHARACTER RACE     </label> </th>
+                <th> <label asp-for="CharInfo.Race">        CHARACTER CLASS    </label> </th>
+                <th> <label asp-for="CharInfo.Alignment">   ALIGNMENT          </label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharInfo.CharName" /> </th>
+                <th> <input asp-for="CharInfo.Class" /> </th>
+                <th> <input asp-for="CharInfo.Race" /> </th>
+                <th> <input asp-for="CharInfo.Alignment" /> </th>
+            </tr>
+        </tbody>
+    </table>
 
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharInfo.PlayerName">  PLAYERNAME         </label> </th>
+                <th> <label asp-for="CharInfo.Level">       CHARACTER LEVEL    </label> </th>
+                <th> <label asp-for="CharInfo.CurrentEXP">  EXPERIENCE CURRENT </label> </th>
+                <th> <label asp-for="CharInfo.GoalEXP">     EXPERIENCE GOAL    </label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharInfo.PlayerName" /> </th>
+                <th> <input asp-for="CharInfo.Level" /> </th>
+                <th> <input asp-for="CharInfo.CurrentEXP" /> </th>
+                <th> <input asp-for="CharInfo.GoalEXP" /> </th>
+            </tr>
+        </tbody>
+    </table>
 
-<p></p>
+    <p></p>
 
-@*CHARACTER BACKGROUND TABLE*@
-<table>
-    <thead>
-        <tr>
-            <th>BACKGROUND</th>
-            <th>PERSONALIY TRAITS</th>
-            <th>IDEALS</th>
-            <th>BONDS</th>
-            <th>FLAWS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>@Model.CharInfo.Background</th>
-            <th>@Model.CharInfo.BackgroundInfo[0]</th>
-            <th>@Model.CharInfo.BackgroundInfo[1]</th>
-            <th>@Model.CharInfo.BackgroundInfo[2]</th>
-            <th>@Model.CharInfo.BackgroundInfo[3]</th>
-        </tr>
-    </tbody>
-</table>
+    @*CHARACTER BACKGROUND TABLE*@
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharInfo.Background">BACKGROUND</label> </th>
+                <th> <label asp-for="CharInfo.BackgroundInfo[0]">PERSONALITY TRAITS</label> </th>
+                <th> <label asp-for="CharInfo.BackgroundInfo[1]">IDEALS</label> </th>
+                <th> <label asp-for="CharInfo.BackgroundInfo[2]">BONDS</label> </th>
+                <th> <label asp-for="CharInfo.BackgroundInfo[3]">FLAWS</label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharInfo.Background" /> </th>
+                <th> <input asp-for="CharInfo.BackgroundInfo[0]" /> </th>
+                <th> <input asp-for="CharInfo.BackgroundInfo[1]" /> </th>
+                <th> <input asp-for="CharInfo.BackgroundInfo[2]" /> </th>
+                <th> <input asp-for="CharInfo.BackgroundInfo[3]" /> </th>
+            </tr>
+        </tbody>
+    </table>
 
-<p></p>
+    <p></p>
 
-@*CHARACTER CORE STATS TABLE*@
-<table>
+    @*CHARACTER CORE STATS TABLE*@
+    <table>
 
-    <thead>
-        <tr>
-            <th>STRENGTH</th>
-            <th>STRENGTH MODIFIER</th>
-            <th>DEXTERITY</th>
-            <th>DEXTERITY MODIFIER</th>
-            <th>CONSTITUTION</th>
-            <th>CONSTITUTION MODIFIER</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>@Model.CharStats.Strength</th>
-            <th>@Model.CharStats.StrengthMod</th>
-            <th>@Model.CharStats.Dexterity</th>
-            <th>@Model.CharStats.DexterityMod</th>
-            <th>@Model.CharStats.Constitution</th>
-            <th>@Model.CharStats.ConstitutionMod</th>
-        </tr>
-    </tbody>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharStats.Strength">STRENGTH</label> </th>
+                <th> <label asp-for="CharStats.StrengthMod">STRENGTH MODIFIER</label> </th>
+                <th> <label asp-for="CharStats.Dexterity">DEXTERITY</label> </th>
+                <th> <label asp-for="CharStats.DexterityMod">DEXTERITY MODIFIER</label> </th>
+                <th> <label asp-for="CharStats.Constitution">CONSTITUTION</label> </th>
+                <th> <label asp-for="CharStats.ConstitutionMod">CONSTITUTION MODIFIER</label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharStats.Strength" /> </th>
+                <th> <input asp-for="CharStats.StrengthMod" /> </th>
+                <th> <input asp-for="CharStats.Dexterity" /> </th>
+                <th> <input asp-for="CharStats.DexterityMod" /> </th>
+                <th> <input asp-for="CharStats.Constitution" /> </th>
+                <th> <input asp-for="CharStats.ConstitutionMod" /> </th>
+            </tr>
+        </tbody>
 
-</table>
+    </table>
 
-<table>
-    <thead>
-        <tr>
-            <th>INTELLIGENCE</th>
-            <th>INTELLIGENCE MODIFIER</th>
-            <th>WISDOM</th>
-            <th>WISDOM MODIFIER</th>
-            <th>CHARISMA</th>
-            <th>CHARISMA MODIFIER</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>@Model.CharStats.Intelligence</th>
-            <th>@Model.CharStats.IntelligenceMod</th>
-            <th>@Model.CharStats.Wisdom</th>
-            <th>@Model.CharStats.WisdomMod</th>
-            <th>@Model.CharStats.Charisma</th>
-            <th>@Model.CharStats.CharismaMod</th>
-        </tr>
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharStats.Intelligence">INTELLIGENCE</label> </th>
+                <th> <label asp-for="CharStats.IntelligenceMod">INTELLIGENCE MODIFER</label> </th>
+                <th> <label asp-for="CharStats.Wisdom">WISDOM</label></th>
+                <th> <label asp-for="CharStats.WisdomMod">WISDOM MODIFIER</label> </th>
+                <th> <label asp-for="CharStats.Charisma">CHARISMA</label> </th>
+                <th> <label asp-for="CharStats.CharismaMod">CHARISMA MODIFIER</label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharStats.Intelligence" /> </th>
+                <th> <input asp-for="CharStats.IntelligenceMod" /> </th>
+                <th> <input asp-for="CharStats.Wisdom" /> </th>
+                <th> <input asp-for="CharStats.WisdomMod" /> </th>
+                <th> <input asp-for="CharStats.Charisma" /> </th>
+                <th> <input asp-for="CharStats.CharismaMod" /> </th>
+            </tr>
+        </tbody>
+    </table>
 
-<p></p>
+    <p></p>
 
-@*COMBAT STATS*@
-<table>
-    <thead>
-        <tr>
-            <th>ARMOR CLASS</th>
-            <th>INITIATIVE</th>
-            <th>SPEED</th>
-            <th>INSPIRATION</th>
-            <th>MAX HEALTH</th>
-            <th>CURRENT HEALTH</th>
-            <th>TEMPORARY HEALTH</th>
-            <th>HIT DICE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>@Model.CharStats.ArmorClass</th>
-            <th>@Model.CharStats.Initiative</th>
-            <th>@Model.CharStats.Speed</th>
-            <th>@Model.CharStats.Inspiration</th>
-            <th>@Model.CharStats.MaxHP</th>
-            <th>@Model.CharStats.CurrentHP</th>
-            <th>@Model.CharStats.TempHP</th>
-            <th>@Model.CharStats.HitDie.ToString()</th>
-        </tr>
-    </tbody>
-</table>
+    @*COMBAT STATS*@
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharStats.ArmorClass">ARMOR CLASS</label> </th>
+                <th> <label asp-for="CharStats.Initiative">INITIATIVE</label> </th>
+                <th> <label asp-for="CharStats.Speed">SPEED</label> </th>
+                <th> <label asp-for="CharStats.Inspiration">INSPIRATION</label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharStats.ArmorClass" /> </th>
+                <th> <input asp-for="CharStats.Initiative" /> </th>
+                <th> <input asp-for="CharStats.Speed" /> </th>
+                <th> <input asp-for="CharStats.Inspiration" /> </th>
+            </tr>
+        </tbody>
+    </table>
 
-<p></p>
+    <table>
+        <thead>
+            <tr>
+                <th> <label asp-for="CharStats.MaxHP">MAX HEALTH</label> </th>
+                <th> <label asp-for="CharStats.CurrentHP">CURRENT HEALTH</label> </th>
+                <th> <label asp-for="CharStats.TempHP">TEMPORARY HEALTH</label> </th>
+                <th> <label asp-for="CharStats.HitDie">HIT DICE</label> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> <input asp-for="CharStats.MaxHP" /> </th>
+                <th> <input asp-for="CharStats.CurrentHP" /> </th>
+                <th> <input asp-for="CharStats.TempHP" /> </th>
+                <th>
+                    <select asp-for="CharStats.HitDie">
+                        <option value="@eHitDice.D4">D4</option>
+                        <option value="@eHitDice.D6">D6</option>
+                        <option value="@eHitDice.D8">D8</option>
+                        <option value="@eHitDice.D10">D10</option>
+                        <option value="@eHitDice.D100">D100</option>
+                        <option value="@eHitDice.D12">D12</option>
+                        <option value="@eHitDice.D20">D20</option>
+                    </select>
+                </th>
 
-@*DEATH SAVES*@
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>DEATH SAVES</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>SUCCESSES</th>
-            <th>
-                @{
-                    string succdisplay = "";
-                    foreach (bool save in @Model.CharStats.DeathSaveRolls.SuccessfulSaves)
-                    {
-                        if (save) succdisplay += "[X]";
-                        if (!save) succdisplay += "[O]";
-                    }
-                }
-                @succdisplay
-            </th>
-            <th>ADD SUCCESS</th>
-            <th>REMOVE SUCCESS</th>
-            <th>CLEAR SUCCESS</th>
-        </tr>
-        <tr>
-            <th>FAILURES</th>
-            <th>
-                @{
-                    string faildisplay = "";
-                    foreach (bool save in @Model.CharStats.DeathSaveRolls.FailedSaves)
-                    {
-                        if (save) faildisplay += "[X]";
-                        if (!save) faildisplay += "[O]";
-                    }
-                }
-                @faildisplay
-            </th>
-            <th>ADD FAILURE</th>
-            <th>REMOVE FAILURE</th>
-            <th>CLEAR FAILURE</th>
-        </tr>
-    </tbody>
-</table>
+            </tr>
+        </tbody>
+    </table>
 
+    <p><button type="submit">Save Changes</button></p>
+</form>
 
 
 
