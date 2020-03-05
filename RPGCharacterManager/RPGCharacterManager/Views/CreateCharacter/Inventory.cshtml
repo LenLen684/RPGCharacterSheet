@@ -5,58 +5,65 @@
 }
 @model Character
 
-<h1>Inventory</h1>
+<h1>Create Inventory</h1>
+<form method="post">
 
-<table>
-    <thead>
-        <tr>
-            <th>Currency</th>
-            <th>Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Copper</th>
-            <th>@Model.CharWallet.copper</th>
-        </tr>
-        <tr>
-            <th>Silver</th>
-            <th>@Model.CharWallet.silver</th>
-        </tr>
-        <tr>
-            <th>Gold</th>
-            <th>@Model.CharWallet.gold</th>
-        </tr>
-        <tr>
-            <th>Electrum</th>
-            <th>@Model.CharWallet.electrum</th>
-        </tr>
-        <tr>
-            <th>Platinum</th>
-            <th>@Model.CharWallet.platinum</th>
-        </tr>
-    </tbody>
-</table>
+    @*Wallet*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharWallet.copper">Copper amount:</label></th>
+                <th><label asp-for="CharWallet.silver">Silver amount:</label></th>
+                <th><label asp-for="CharWallet.gold">Gold amount:</label></th>
+                <th><label asp-for="CharWallet.electrum">Electrum amount:</label></th>
+                <th><label asp-for="CharWallet.platinum">Platinum amount:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharWallet.copper" /></th>
+                <th><input asp-for="CharWallet.silver" /> </th>
+                <th><input asp-for="CharWallet.gold" /></th>
+                <th><input asp-for="CharWallet.electrum" /></th>
+                <th><input asp-for="CharWallet.platinum" /></th>
+            </tr>
+        </tbody>
+    </table>
 
+    @*Item*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.itemField.itemAmount">Item Amount:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemName">Item Name:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemDescription">Item Description:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.itemField.itemAmount" /></th>
+                <th><input asp-for="CharInventory.itemField.itemName" /></th>
+                <th><input asp-for="CharInventory.itemField.itemDescription" /></th>
+            </tr>
+        </tbody>
+    </table>
 
-<table>
-    <thead>
-        <tr>
-            <th>Amount</th>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (Item item in @Model.CharInventory.items)
-            {
-                <tr>
-                    <th>@item.itemAmount</th>
-                    <th>@item.itemName </th>
-                    <th>@item.itemDescription</th>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+    @*Weapon*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.weaponField.weaponName" /></th>
+                <th><input asp-for="CharInventory.weaponField.weaponDescription" /></th>
+                <th><input asp-for="CharInventory.weaponField.weaponMod" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Create</button></p>
+</form>
