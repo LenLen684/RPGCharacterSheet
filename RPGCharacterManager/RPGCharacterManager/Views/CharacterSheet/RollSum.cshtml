@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "CharacterInfo";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model List<int>
+@*SIDES AMOUNT MODIFIERTOADD*@
+
+@{
+    Random rand = new Random();
+    List<int> rolls = new List<int>();
+    int sum = 0;
+    string print = "";
+
+    for (int i = 0; i < Model.ElementAt(1); i++)
+    {
+        int j = rand.Next(1, Model.ElementAt(0) + 1);
+        rolls.Add(j);
+        sum += j;
+    }
+
+    for (int i = 0; i < rolls.Count(); i++)
+    {
+        if (i == 0) print = print + rolls.ElementAt(i).ToString();
+        else
+        {
+            print = print + " + " + rolls.ElementAt(i).ToString();
+        }
+    }
+
+    print = print + " + " + Model.ElementAt(2).ToString();
+    sum += Model.ElementAt(2);
+
+    print = print + " = " + sum.ToString();
+}
+
+<h1>@print</h1>
