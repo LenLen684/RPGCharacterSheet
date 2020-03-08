@@ -42,33 +42,7 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult testingPage()
         {
-            /*TestingModel m = new TestingModel();
-            m.Id = 2;
-            m.name = "OscarChan";
-            m.age = 1000;
-            //m.secret = enumss.b;
-            //m.specialList = new List<special>();
-            //special s = new special();
-            //s.name = "ragnaros";
-            //m.specialList.Add(s);
-            database.AddAsync(m);
-            //database.AddAsync<TestingModel>(m);
-            database.SaveChangesAsync();
-            TestingModel model = m;*/
-            //if ( database.Users != null && database.Users.Any())
-            //{
-            //    return View(database.Users);
-            //    /*
-            //    if ( database.Testings.Any() )
-            //    {
-            //        bool o = false;
-            //        //if ( database.Testings.Count<TestingModel>() > 0 )
-            //        //{
-            //            //model = database.Testings.FirstOrDefault(a => a.name == "len");
-            //        //}
-            //    }*/
-            //}
-            return View();
+            return View(database.Users);
         }
 
         [HttpPost]
@@ -130,7 +104,7 @@ namespace RPGCharacterManager.Controllers
                 u.Email = email;
                 u.Password = BCrypt.Net.BCrypt.HashPassword(password,12,salt);
                 u.UserId = database.Users.Count() + 2;
-                database.Users.AddAsync(u);
+                database.AddAsync(u);
                 database.SaveChangesAsync();
                 UsersDataContext.currentUser = u;
                 return View("Index", u);
