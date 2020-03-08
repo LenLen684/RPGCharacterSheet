@@ -30,7 +30,7 @@ namespace RPGCharacterManager.Models.Character
     public class Skills
     {
         //Initialize skills
-        public Skill[] CharSkills { get; } = new Skill[18]
+        public Skill[] CharSkills { get; set; } = new Skill[18]
         { 
             new Skill() { SkillName="Acrobatics", Bonus = 0, IsProficient = false, Mod = eModTypes.DEXTERITY},
             new Skill() { SkillName="Animal Handling", Bonus = 0, IsProficient = false, Mod = eModTypes.WISDOM },
@@ -80,6 +80,18 @@ namespace RPGCharacterManager.Models.Character
                         break;
                 }
                 CharSkills[i].Bonus += (CharSkills[0].IsProficient) ? modifier + character.CharStats.Proficiency : modifier;
+            }
+        }
+        public void SetSkill(Skill skill)
+        {
+            for(int i = 0; i < CharSkills.Length; i++)
+            {
+                if(CharSkills[i].SkillName == skill.SkillName)
+                {
+                    CharSkills[i].Mod = skill.Mod;
+                    CharSkills[i].Bonus = skill.Bonus;
+                    CharSkills[i].IsProficient = skill.IsProficient;
+                }
             }
         }
     }

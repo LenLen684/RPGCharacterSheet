@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using CharacterSheetManager.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using RPGCharacterManager.Models.Character;
@@ -22,13 +21,16 @@ namespace RPGCharacterManager.Controllers
         public IActionResult Features()
         {
             Character c = new Character();
+            c.Features = new FeatureList();
+            c.Features.FeatureField = new Feature();
             return View(c);
         }
 
         [HttpPost]
         public IActionResult Features(Character c)
         {
-            c.Features = new FeatureList();
+            CharacterSheetController.character.Features.AddFeature(c.Features.FeatureField.featureName, c.Features.FeatureField.featureDescription);
+            CharacterSheetController.character.Proficiencies.Add(c.ProficiencyField);
             return RedirectToAction("Features", "CharacterSheet");
         }
 
@@ -46,10 +48,6 @@ namespace RPGCharacterManager.Controllers
         public IActionResult Inventory(Character c)
         {
             CharacterSheetController.character.CharWallet = c.CharWallet;
-
-            //Set static character information in main page to display new information
-            //CharacterSheetController.character.CharInventory = new Inventory();
-            //CharacterSheetController.character.CharInventory.AddItem(c.CharInventory.itemField.itemName, c.CharInventory.itemField.itemDescription, c.CharInventory.itemField.itemAmount);
             CharacterSheetController.character.CharInventory.items.Add(c.CharInventory.itemField);
             CharacterSheetController.character.CharInventory.weapons.Add(c.CharInventory.weaponField);
             return RedirectToAction("Inventory", "CharacterSheet");
@@ -79,5 +77,37 @@ namespace RPGCharacterManager.Controllers
 
         
 
+        public IActionResult Spells()
+        {
+            Character c = new Character();
+            c.Spells = new SpellBook();
+            c.Spells.SpellField = new Spell();
+            return View(c);
+        }
+
+        [HttpPost]
+        public IActionResult Spells(Character c)
+        {
+            CharacterSheetController.character.Spells.AddSpell(c.Spells.SpellField.SpellName, c.Spells.SpellField.SpellDescription, c.Spells.SpellField.SpellLevel);
+            return RedirectToAction("Spells", "CharacterSheet");
+        }
+
+        public IActionResult Skills()
+        {
+            Character c = new Character();
+            c.CharSkills = new Skills();
+            return View(c);
+        }
+
+        [HttpPost]
+        public IActionResult Skills(Character c)
+        {
+            for(int i = 0; i < CharacterSheetController.character.CharSkills.CharSkills.Length; i++)
+            {
+                CharacterSheetController.character.CharSkills.CharSkills[i].IsProficient = c.CharSkills.CharSkills[i].IsProficient;
+                CharacterSheetController.character.CharSkills.CharSkills[i].Bonus = c.CharSkills.CharSkills[i].Bonus;
+            }
+            return RedirectToAction("Skills", "CharacterSheet");
+        }
     }
 }

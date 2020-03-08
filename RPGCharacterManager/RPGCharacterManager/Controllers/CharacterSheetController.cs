@@ -121,6 +121,40 @@ namespace CharacterSheetManager.Controllers
             return View(character);
         }
 
+        public IActionResult RollForm()
+        {
+            int[] rolls = new int[3] { 0, 0, 0 };
+
+            return View(rolls);
+        }
+
+        [HttpPost]
+        public IActionResult RollForm(int[] rolls)
+        {
+            bool tooLarge = false;
+            foreach(int i in rolls)
+            {
+                if(i > 9999)
+                {
+                    tooLarge = true;
+                }
+            }
+            if (!tooLarge)
+            {
+                rolls.ToList();
+                return RedirectToAction("RollSum", "CharacterSheet", new { rolls = rolls });
+            }
+            else
+            {
+                return RedirectToAction("RollForm", "CharacterSheet");
+            }
+        }
+
+        public IActionResult RollSum(List<int> rolls)
+        {
+            return View(rolls);
+        }
+
         public IActionResult AddSucc()
         {
             CharacterSheetController.character.CharStats.DeathSaveRolls.AddSuccessfulSave();
