@@ -8,29 +8,31 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-<header>
-    @*<img id="special" src="~/Images/VideoGames.jfif" height="800" />*@
-    <ol>
-        <li><a asp-controller="Home" asp-action="testingPage">TESTING</a></li>
-    </ol>
-</header>
-<div id="main">
-        @*Temporary navigation bar to show character info*@
+    <div id="main">
+    @*Temporary navigation bar to show character info*@
     <div class="topnav">
         <a asp-controller="Home" asp-action="Index">Log In or Sign Up</a>
     </div>
 
     <div class="topnavLower">
 
-        <a asp-action="Features" asp-controller="CreateCharacter">Create Features</a>
+
         <a asp-action="CharacterInfo" asp-controller="CharacterSheet">CharacterInfo</a>
         <a asp-action="Features" asp-controller="CharacterSheet">Features</a>
         <a asp-action="Inventory" asp-controller="CharacterSheet">Inventory</a>
         <a asp-action="Skills" asp-controller="CharacterSheet">Skills</a>
         <a asp-action="Spells" asp-controller="CharacterSheet">Spells</a>
+
         @*CREATES*@
+        <a asp-action="Features" asp-controller="CreateCharacter">Create Features</a>
+        <a asp-action="Spells" asp-controller="CreateCharacter">Create Spells</a>
+        <a asp-action="Skills" asp-controller="CreateCharacter">Create Skills</a>
         <a asp-action="Inventory" asp-controller="CreateCharacter">Create Inventory</a>
         <a asp-action="CharacterInfo" asp-controller="CreateCharacter">Create CI</a>
+
+        @*EXTRAS*@
+        <a asp-action="RollForm" asp-controller="CharacterSheet">Roll Dice</a>
+        
     </div>
         <div id="content">
             @RenderBody()

@@ -5,26 +5,25 @@
 }
 @model Character
 
-<h1>Spells</h1>
+<h1>Features/Proficiencies</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>SPELL NAME</th>
-            <th>SPELL DESCRIPTION</th>
-            <th>SPELL LEVEL</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (Spell spell in @Model.Spells.Spells)
-            {
-                <tr>
-                    <th>@spell.SpellName</th>
-                    <th>@spell.SpellDescription</th>
-                    <th>@spell.SpellLevel</th>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="Spells.SpellField.SpellName">Spell Name</label></th>
+                <th><label asp-for="Spells.SpellField.SpellDescription">Spell Description</label></th>
+                <th><label asp-for="Spells.SpellField.SpellLevel">Spell Level</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="Spells.SpellField.SpellName" /></th>
+                <th><input asp-for="Spells.SpellField.SpellDescription" /></th>
+                <th><input asp-for="Spells.SpellField.SpellLevel" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Create</button></p>
+</form>
+

@@ -18,6 +18,9 @@ namespace RPGCharacterManager.Models.Character
 
     public class SpellBook
     {
+        //Temporary spell for creation
+        public Spell SpellField { get; set; } = new Spell();
+
         //List of known spells
         public List<Spell> Spells { get; set; } = new List<Spell>();
 

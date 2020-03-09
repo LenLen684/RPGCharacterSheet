@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "CharacterInfo";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@model int[]
+@*SIDES AMOUNT MODIFIERTOADD*@
+
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th> NUMBER OF SIDES </th>
+                <th> NUMBER OF DICE </th>
+                <th> MODIFIER TO ADD </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @{ 
+                    for(int i = 0; i < Model.Length; i++)
+                    {
+                        <th><input asp-for="@Model[i]" /></th>
+                    }
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    <p><button type="submit">Roll Dice</button></p>
+</form>
