@@ -16,10 +16,10 @@ namespace RPGCharacterManager.Controllers
         private Random rng = new Random();
         private readonly UsersDataContext database;
 
-        //public HomeController( UsersDataContext db ) : base()
-        //{
-        //    database = db;
-        //}
+        public HomeController( UsersDataContext db ) : base()
+        {
+            database = db;
+        }
 
         static User user = new User()
         {
@@ -68,7 +68,7 @@ namespace RPGCharacterManager.Controllers
             //        //}
             //    }*/
             //}
-            return View();
+            return View(database.Users);
         }
 
         [HttpPost]
@@ -130,7 +130,7 @@ namespace RPGCharacterManager.Controllers
                 u.Email = email;
                 u.Password = BCrypt.Net.BCrypt.HashPassword(password,12,salt);
                 u.UserId = database.Users.Count() + 2;
-                database.Users.AddAsync(u);
+                database.AddAsync(u);
                 database.SaveChangesAsync();
                 UsersDataContext.currentUser = u;
                 return View("Index", u);
@@ -157,8 +157,7 @@ namespace RPGCharacterManager.Controllers
         public IActionResult LogOut()
         {
                 UsersDataContext.currentUser = null;
-                return View("Index", UsersDataContext.currentUser);
-            //return RedirectToAction("Characters");
+                return RedirectToAction("Index", UsersDataContext.currentUser);
         }
     }
 }

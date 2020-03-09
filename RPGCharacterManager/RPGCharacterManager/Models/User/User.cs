@@ -20,6 +20,6 @@ namespace RPGCharacterManager.Models.User
             set { userID = value; }
         }
 
-        public List<Character.Character> Characters { get; set; } = new List<Character.Character>();
+        //public List<Character.Character> Characters { get; set; } = new List<Character.Character>();
     }
 }
