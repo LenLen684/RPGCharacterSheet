@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,8 @@ namespace RPGCharacterManager.Models.Character
 
     public class SpellBook
     {
+        [Key]
+        public int Id {get; set;}
         //Temporary spell for creation
         public Spell SpellField { get; set; } = new Spell();
 

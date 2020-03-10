@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,6 +30,8 @@ namespace RPGCharacterManager.Models.Character
 
     public class Skills
     {
+        [Key]
+        public int Id {get; set;}
         //Initialize skills
         public Skill[] CharSkills { get; set; } = new Skill[18]
         { 

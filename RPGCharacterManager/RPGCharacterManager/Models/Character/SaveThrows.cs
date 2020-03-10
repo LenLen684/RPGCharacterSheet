@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,8 @@ namespace RPGCharacterManager.Models.Character
 {
     public class SaveThrows
     {
+        [Key]
+        public int Id {get; set;}
         public int strengthSaveMod { get; set; }
         public int dexteritySaveMod { get; set; }
         public int constitutionSaveMod { get; set; }
