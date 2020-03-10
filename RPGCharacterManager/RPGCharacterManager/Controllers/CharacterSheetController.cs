@@ -143,7 +143,19 @@ namespace CharacterSheetManager.Controllers
             return RedirectToAction("Spells", "CharacterSheet");
         }
 
+        [HttpPost]
+        public IActionResult DeleteWeapon(int Id)
+        {
+            character.CharInventory.weapons.Remove(character.CharInventory.weapons.Where(w => w.Id == Id).FirstOrDefault());
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
 
+        [HttpPost]
+        public IActionResult DeleteItem(int Id)
+        {
+            character.CharInventory.items.Remove(character.CharInventory.items.Where(i => i.Id == Id).FirstOrDefault());
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
 
 
 

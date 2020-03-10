@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Update Item";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Item
+
+<h1>Update Item</h1>
+<form method="post">
+    @*Item*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="itemAmount">Item Amount:</label></th>
+                <th><label asp-for="itemName">Item Name:</label></th>
+                <th><label asp-for="itemDescription">Item Description:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="itemAmount" /></th>
+                <th><input asp-for="itemName" /></th>
+                <th><input asp-for="itemDescription" /></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><button type="submit">Update Item</button></p>
+</form>

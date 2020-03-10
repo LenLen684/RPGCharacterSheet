@@ -46,7 +46,7 @@ namespace RPGCharacterManager.Controllers
             HttpContext.Session.TryGetValue("UserID", out byte[] id);
             if(id != null && id.Length != 0)
             {
-                return View(database.Users.FirstOrDefault(u => u.UserId.Equals((Encoding.UTF8.GetString(id)))));
+                return View(database.Users.FirstOrDefault(u => u.UserId.ToString().Equals((Encoding.UTF8.GetString(id)))));
             }
             return View(null);
         }
@@ -148,7 +148,7 @@ namespace RPGCharacterManager.Controllers
                 u.Username = username;
                 u.Email = email;
                 u.Password = BCrypt.Net.BCrypt.HashPassword(password,12,salt);
-                u.UserId = database.Users.Count() + 2;
+                u.UserId = database.Users.Count() + 1;
                 database.AddAsync(u);
                 database.SaveChangesAsync();
                 //HttpContext.Session.Set("UserID", Encoding.UTF8.GetBytes(u.UserId.ToString()));

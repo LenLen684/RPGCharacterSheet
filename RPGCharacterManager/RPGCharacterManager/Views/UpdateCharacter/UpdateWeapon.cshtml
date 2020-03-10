@@ -1,27 +1,27 @@
 ﻿
 @{
-    ViewData["Title"] = "Add Weapon";
+    ViewData["Title"] = "Update Weapon";
     Layout = "~/Views/_Layout.cshtml";
 }
-@model Character
+@model Weapon
 
-<h1>Add Weapon</h1>
+<h1>Update Weapon</h1>
 <form method="post">
     @*Weapon*@
     <table>
         <thead>
             <tr>
-                <th><label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label></th>
-                <th><label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label></th>
-                <th><label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label></th>
+                <th><label asp-for="weaponName">Weapon Name:</label></th>
+                <th><label asp-for="weaponDescription">Weapon Description:</label></th>
+                <th><label asp-for="weaponMod">Weapon Modifier:</label></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th><input asp-for="CharInventory.weaponField.weaponName" /></th>
-                <th><input asp-for="CharInventory.weaponField.weaponDescription" /></th>
+                <th><input asp-for="weaponName" /></th>
+                <th><input asp-for="weaponDescription" /></th>
                 <th>
-                    <select asp-for="CharInventory.weaponField.weaponMod">
+                    <select asp-for="weaponMod">
                         <option value="@eWeaponMod.STRENGTH">Strength</option>
                         <option value="@eWeaponMod.DEXTERITY">Dexterity</option>
                         <option value="@eWeaponMod.CONSTITUTION">Constitution</option>
@@ -34,5 +34,5 @@
         </tbody>
     </table>
 
-    <p><button type="submit">Add Weapon</button></p>
+    <p><button type="submit">Update Weapon</button></p>
 </form>
