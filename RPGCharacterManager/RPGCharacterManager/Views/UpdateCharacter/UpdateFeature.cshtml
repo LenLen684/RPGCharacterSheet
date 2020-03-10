@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Update Spell";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Feature
+<h1>Update Feature</h1>
+
+<form method="post">
+
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="featureName">Feature Name</label></th>
+                <th><label asp-for="featureDescription">Feature Description</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="featureName" /></th>
+                <th><input asp-for="featureDescription" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Update Feature</button></p>
+
+</form>

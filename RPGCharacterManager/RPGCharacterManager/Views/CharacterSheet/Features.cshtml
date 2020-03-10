@@ -7,7 +7,7 @@
 
 <h1>Features/Proficiencies</h1>
 
-<a class="FloatingButton" asp-action="Features" asp-controller="UpdateCharacter">Update Features</a>
+
 
 <table>
     <thead>
@@ -22,13 +22,14 @@
         <tr>
             <th>@feature.featureName</th>
             <th>@feature.featureDescription</th>
-            <td><a asp-action="NewFeature" asp-controller="UpdateCharacter">Add Feature</a></td>
-            <td>
-                <form asp-controller="UpdateCharacter" asp-action="Delete" method="post">
+
+            <th><a asp-action="UpdateFeature" asp-controller="UpdateCharacter" asp-route-Id="@feature.Id">Update Feature</a></th>
+            <th>
+                <form asp-action="DeleteFeature" asp-controller="UpdateCharacter" method="post">
                     <input type="hidden" name="Id" value="@feature.Id" />
-                    <button type="submit">Delete</button>
+                    <button class="btn" type="submit">Delete</button>
                 </form>
-            </td>
+            </th>
         </tr>
         }
     </tbody>
@@ -48,6 +49,12 @@
             {
                 <tr>
                     <th>@proficiency</th>
+                    <th>
+                        <form asp-action="DeleteProficiency" asp-controller="UpdateCharacter" method="post">
+                            <input type="hidden" name="proficiency" value="@proficiency" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </th>
                 </tr>
             }
         }

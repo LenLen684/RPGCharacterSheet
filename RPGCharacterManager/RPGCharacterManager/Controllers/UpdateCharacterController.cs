@@ -16,14 +16,16 @@ namespace RPGCharacterManager.Controllers
         {
             return View();
         }
+        #region FeatureCRUD
 
-        public IActionResult Features(int id)
+        public IActionResult UpdateFeature(int Id)
         {
-            return View(CharacterSheetController.character);
+            Feature f = CharacterSheetController.character.Features.Features.Where(f => f.Id == Id).FirstOrDefault();
+            return View(f);
         }
 
         [HttpPost]
-        public IActionResult Features(Feature feature, int Id)
+        public IActionResult UpdateFeature(Feature feature, int Id)
         {
             Feature f = CharacterSheetController.character.Features.Features.Where(f => f.Id == Id).FirstOrDefault();
             if (f != null)
@@ -35,18 +37,25 @@ namespace RPGCharacterManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(int Id)
+        public IActionResult DeleteFeature(int Id)
         {
             Feature f = CharacterSheetController.character.Features.Features.Where(f => f.Id == Id).FirstOrDefault();
             CharacterSheetController.character.Features.Features.Remove(f);
             return RedirectToAction("Features", "CharacterSheet");
         }
+        #endregion
 
-        public IActionResult NewFeature()
+        #region Proficiency
+
+        [HttpPost]
+        public IActionResult DeleteProficiency(string proficiency)
         {
-            return View();
+            CharacterSheetController.character.Proficiencies.Remove(proficiency);
+            return RedirectToAction("Features", "CharacterSheet");
         }
+        #endregion
 
+        #region SpellCRUD
         public IActionResult UpdateSpell(int Id)
         {
             Spell spell = CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault();
@@ -56,10 +65,12 @@ namespace RPGCharacterManager.Controllers
         [HttpPost]
         public IActionResult UpdateSpell(Spell spell, int Id)
         {
-            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellName = spell.SpellName;
-            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellDescription = spell.SpellDescription;
-            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellLevel = spell.SpellLevel;
+            Spell s = CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault();
+            s.SpellName = spell.SpellName;
+            s.SpellDescription = spell.SpellDescription;
+            s.SpellLevel = spell.SpellLevel;
             return RedirectToAction("Spells", "CharacterSheet");
         }
+        #endregion
     }
 }
