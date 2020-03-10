@@ -7,7 +7,9 @@ using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 using RPGCharacterManager.Models.User;
 using RPGCharacterManager.Models.Character;
 using RPGCharacterManager.Models.DatabaseContexts;
+using RPGCharacterManager.Models.DatabaseModels;
 using BCrypt.Net;
+using CharacterSheetManager.Controllers;
 
 namespace RPGCharacterManager.Controllers
 {
@@ -87,6 +89,10 @@ namespace RPGCharacterManager.Controllers
                 if ( BCrypt.Net.BCrypt.Verify(password, u.Password))
                 {
                     UsersDataContext.currentUser = u;
+                    //Converter.database = database;
+                    //Converter.user = u;
+                    //Converter.character = CharacterSheetController.character;
+                    //Converter.addCharacter(u,CharacterSheetController.character);
                     return View("Index", u);
                 }
             }
