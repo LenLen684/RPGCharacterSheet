@@ -23,6 +23,13 @@
                     <th>@spell.SpellName</th>
                     <th>@spell.SpellDescription</th>
                     <th>@spell.SpellLevel</th>
+                    <th><a class="btn" asp-action="UpdateSpell" asp-controller="UpdateCharacter" asp-route-Id="@spell.Id">Update</a></th>
+                    <th>
+                        <form asp-action="DeleteSpell" method="post">
+                            <input type="hidden" name="Id" value="@spell.Id" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </th>
                 </tr>
             }
         }

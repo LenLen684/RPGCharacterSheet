@@ -46,5 +46,20 @@ namespace RPGCharacterManager.Controllers
         {
             return View();
         }
+
+        public IActionResult UpdateSpell(int Id)
+        {
+            Spell spell = CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault();
+            return View(spell);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateSpell(Spell spell, int Id)
+        {
+            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellName = spell.SpellName;
+            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellDescription = spell.SpellDescription;
+            CharacterSheetController.character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault().SpellLevel = spell.SpellLevel;
+            return RedirectToAction("Spells", "CharacterSheet");
+        }
     }
 }
