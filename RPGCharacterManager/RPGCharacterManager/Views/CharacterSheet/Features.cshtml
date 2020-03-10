@@ -7,6 +7,8 @@
 
 <h1>Features/Proficiencies</h1>
 
+<a class="FloatingButton" asp-action="Features" asp-controller="UpdateCharacter">Update Features</a>
+
 <table>
     <thead>
         <tr>
@@ -17,10 +19,17 @@
     <tbody>
         @foreach (Feature feature in @Model.Features.Features)
         {
-            <tr>
-                <th>@feature.featureName</th>
-                <th>@feature.featureDescription</th>
-            </tr>
+        <tr>
+            <th>@feature.featureName</th>
+            <th>@feature.featureDescription</th>
+            <td><a asp-action="NewFeature" asp-controller="UpdateCharacter">Add Feature</a></td>
+            <td>
+                <form asp-controller="UpdateCharacter" asp-action="Delete" method="post">
+                    <input type="hidden" name="Id" value="@feature.Id" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -8,6 +8,11 @@ namespace RPGCharacterManager.Models.Character
 {
     public class Feature
     {
+        public Feature()
+        {
+            Id = totalId++;
+        }
+        private static int totalId = 0;
         [Key]
         public int Id { get; set; }
 
