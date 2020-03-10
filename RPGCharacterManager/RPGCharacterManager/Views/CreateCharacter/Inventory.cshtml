@@ -3,7 +3,7 @@
     ViewData["Title"] = "Update Wallet";
     Layout = "~/Views/_Layout.cshtml";
 }
-@model Character
+@model Wallet
 
 <h1>Update Wallet</h1>
 <form method="post">
@@ -12,20 +12,20 @@
     <table>
         <thead>
             <tr>
-                <th><label asp-for="CharWallet.copper">Copper amount:</label></th>
-                <th><label asp-for="CharWallet.silver">Silver amount:</label></th>
-                <th><label asp-for="CharWallet.gold">Gold amount:</label></th>
-                <th><label asp-for="CharWallet.electrum">Electrum amount:</label></th>
-                <th><label asp-for="CharWallet.platinum">Platinum amount:</label></th>
+                <th><label asp-for="copper">Copper amount:</label></th>
+                <th><label asp-for="silver">Silver amount:</label></th>
+                <th><label asp-for="gold">Gold amount:</label></th>
+                <th><label asp-for="electrum">Electrum amount:</label></th>
+                <th><label asp-for="platinum">Platinum amount:</label></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th><input asp-for="CharWallet.copper" /></th>
-                <th><input asp-for="CharWallet.silver" /> </th>
-                <th><input asp-for="CharWallet.gold" /></th>
-                <th><input asp-for="CharWallet.electrum" /></th>
-                <th><input asp-for="CharWallet.platinum" /></th>
+                <th><input asp-for="copper" /></th>
+                <th><input asp-for="silver" /> </th>
+                <th><input asp-for="gold" /></th>
+                <th><input asp-for="electrum" /></th>
+                <th><input asp-for="platinum" /></th>
             </tr>
         </tbody>
     </table>
