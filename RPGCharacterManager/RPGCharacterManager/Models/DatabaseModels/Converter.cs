@@ -381,7 +381,8 @@ namespace RPGCharacterManager.Models.DatabaseModels
                 c.CharInventory.items.Add(item);
             }
 
-            IEnumerable<CharacterWeapon> weapons = database.CharacterWeapons.Where(o => o.Character == c.CharacterID);
+            IEnumerable<CharacterWeapon> weapons2 = database.CharacterWeapons.Where(o => o.Character == c.CharacterID);
+            CharacterWeapon[] weapons = weapons2.ToArray();
 
             foreach ( var w in weapons )
             {
@@ -396,8 +397,8 @@ namespace RPGCharacterManager.Models.DatabaseModels
             }
 
             c.Features.Features = new List<Character.Feature>();
-            IEnumerable<CharacterFeature> characterFeatures =
-                database.CharacterFeatures.Where(o => o.Character == c.CharacterID);
+            CharacterFeature[] characterFeatures =
+                database.CharacterFeatures.Where(o => o.Character == c.CharacterID).ToArray();
             foreach ( var cf in characterFeatures )
             {
                 var feature = database.Features.FirstOrDefault(o => o.Id == cf.FeatureId);
@@ -455,18 +456,22 @@ namespace RPGCharacterManager.Models.DatabaseModels
             var spellsKnown = new List<int>();
 
             var spells = spellBook.SpellsKnown.Split(',');
+
             foreach ( var s in spells )
             {
-                var spell1 = new Character.Spell();
-                var spell = database.Spells.FirstOrDefault(o => o.Id == int.Parse(s));
-                spell1.Id = spell.Id;
-                spell1.SpellName = spell.SpellName;
-                spell1.SpellDescription = spell.SpellDescription;
-                spell1.SpellLevel = spell.SpellLevel;
-                c.Spells.Spells.Add(spell1);
+                if ( s != null && s.Length > 0 )
+                {
+                    var spell1 = new Character.Spell();
+                    var spell = database.Spells.FirstOrDefault(o => o.Id == int.Parse(s));
+                    spell1.Id = spell.Id;
+                    spell1.SpellName = spell.SpellName;
+                    spell1.SpellDescription = spell.SpellDescription;
+                    spell1.SpellLevel = spell.SpellLevel;
+                    c.Spells.Spells.Add(spell1);
+                }
             }
 
-            c.Spells.CalculateSpellcastingInfo(c);
+            //c.Spells.CalculateSpellcastingInfo(c);
 
             var characterStat = database.CharacterStats.FirstOrDefault(o => o.Id == c.CharacterID);
 
@@ -490,6 +495,8 @@ namespace RPGCharacterManager.Models.DatabaseModels
             var characterDeathsave =
                 database.CharacterDeathSaves.FirstOrDefault(o => o.Character == c.CharacterID);
 
+            c.CharStats.DeathSaveRolls = new Character.DeathSaves();
+
             c.CharStats.DeathSaveRolls.Id = characterDeathsave.Id;
             var success =
                 characterDeathsave
@@ -508,8 +515,8 @@ namespace RPGCharacterManager.Models.DatabaseModels
             c.CharWallet.gold = characterWallet.Gold;
             c.CharWallet.platinum = characterWallet.Platinum;
 
-            IEnumerable<CharacterProficiencie> characterProficincie =
-                database.CharacterProficiencies.Where(o => o.Character == c.CharacterID);
+            CharacterProficiencie[] characterProficincie =
+                database.CharacterProficiencies.Where(o => o.Character == c.CharacterID).ToArray();
 
             foreach ( var prof in characterProficincie )
             {

@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RPGCharacterManager.Controllers;
 using RPGCharacterManager.Models.Character;
+using RPGCharacterManager.Models.DatabaseContexts;
+using RPGCharacterManager.Models.DatabaseModels;
+using CharacterInfo = RPGCharacterManager.Models.Character.CharacterInfo;
+using Feature = RPGCharacterManager.Models.Character.Feature;
+using Item = RPGCharacterManager.Models.Character.Item;
+using Spell = RPGCharacterManager.Models.Character.Spell;
+using SpellBook = RPGCharacterManager.Models.Character.SpellBook;
+using Weapon = RPGCharacterManager.Models.Character.Weapon;
 
 namespace CharacterSheetManager.Controllers
 {
     public class CharacterSheetController : Controller
     {
+        public static int loggedIn = -1;
+        
+        private readonly UsersDataContext Pdatabase;
+
+        public static bool gotCharacter = false;
         //Testing character
-        public static Character character = new Character()
+        public static Character character2 = new Character()
         {
             CharInfo = new CharacterInfo()
             {
@@ -89,35 +103,58 @@ namespace CharacterSheetManager.Controllers
             Proficiencies = new List<string>() { "Common", "Ignus", "Goblin", "Torches", "Fire attacks" },
             CharSkills = new Skills()
         };
+        public static Character character = character2;
+
+        public CharacterSheetController( UsersDataContext db ) : base()
+        {
+            Pdatabase = db;
+        }
+
+        private void getCharacter()
+        {
+            if ( loggedIn > -1 && !gotCharacter )
+            {
+                gotCharacter = true;
+                Converter.database = Pdatabase;
+                Converter.user = Pdatabase.Users.FirstOrDefault(o => o.UserId == loggedIn);
+                character = Converter.getCharacter(Converter.user, 0);
+            }
+        }
 
         public IActionResult Index()
         {
+            getCharacter();
             return View();
         }
 
         public IActionResult CharacterInfo()
         {
+            getCharacter();
             //character.CreateRandomCharacter();
             return View(character);
         }
 
         public IActionResult Features()
         {
+            getCharacter();
             return View(character);
         }
 
         public IActionResult Inventory()
         {
+            getCharacter();
             return View(character);
         }
 
         public IActionResult Skills()
         {
+            getCharacter();
             return View(character);
         }
 
         public IActionResult Spells()
         {
+            getCharacter();
             return View(character);
         }
 

@@ -88,11 +88,9 @@ namespace RPGCharacterManager.Controllers
                 User u = IsEmail? database.Users.FirstOrDefault(u => u.Email.Equals(username)) : database.Users.FirstOrDefault(u => u.Username.Equals(username));
                 if ( BCrypt.Net.BCrypt.Verify(password, u.Password))
                 {
+                    CharacterSheetController.loggedIn = u.UserId;
+
                     UsersDataContext.currentUser = u;
-                    //Converter.database = database;
-                    //Converter.user = u;
-                    //Converter.character = CharacterSheetController.character;
-                    //Converter.addCharacter(u,CharacterSheetController.character);
                     return View("Index", u);
                 }
             }
@@ -112,6 +110,10 @@ namespace RPGCharacterManager.Controllers
                 u.UserId = database.Users.Count() + 2;
                 database.AddAsync(u);
                 database.SaveChangesAsync();
+                Converter.database = database;
+                Converter.user = u;
+                Converter.character = CharacterSheetController.character2;
+                Converter.addCharacter(u,CharacterSheetController.character2);
                 UsersDataContext.currentUser = u;
                 return View("Index", u);
             }
