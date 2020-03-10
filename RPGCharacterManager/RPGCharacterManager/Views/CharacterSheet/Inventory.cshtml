@@ -56,10 +56,10 @@
                     <th>@item.itemAmount</th>
                     <th>@item.itemName </th>
                     <th>@item.itemDescription</th>
-                    <th><a class="btn" asp-action="UpdateItem" asp-route-resID="@item.Id">Update</a></th>
+                    <th><a class="btn" asp-action="UpdateItem" asp-controller="UpdateCharacter" asp-route-Id="@item.Id">Update</a></th>
                     <th>
                         <form asp-action="DeleteItem" method="post">
-                            <input type="hidden" name="resID" value="@item.Id" />
+                            <input type="hidden" name="Id" value="@item.Id" />
                             <button class="btn" type="submit">Delete</button>
                         </form>
                     </th>
@@ -87,10 +87,10 @@
                     <th>@item.weaponName</th>
                     <th>@item.weaponDescription </th>
                     <th>@item.weaponMod</th>
-                    <th><a class="btn" asp-action="UpdateWeapon" asp-route-resID="@item.Id">Update</a></th>
+                    <th><a class="btn" asp-action="UpdateWeapon" asp-controller="UpdateCharacter" asp-route-Id="@item.Id">Update</a></th>
                     <th>
                         <form asp-action="DeleteWeapon" method="post">
-                            <input type="hidden" name="resID" value="@item.Id" />
+                            <input type="hidden" name="Id" value="@item.Id" />
                             <button class="btn" type="submit">Delete</button>
                         </form>
                     </th>
