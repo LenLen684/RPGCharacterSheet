@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Add Item";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Character
+
+<h1>Add Item</h1>
+<form method="post">
+    @*Item*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.itemField.itemAmount">Item Amount:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemName">Item Name:</label></th>
+                <th><label asp-for="CharInventory.itemField.itemDescription">Item Description:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.itemField.itemAmount" /></th>
+                <th><input asp-for="CharInventory.itemField.itemName" /></th>
+                <th><input asp-for="CharInventory.itemField.itemDescription" /></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><button type="submit">Add Item</button></p>
+</form>
