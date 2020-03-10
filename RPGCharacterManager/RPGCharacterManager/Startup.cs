@@ -29,18 +29,27 @@ namespace RPGCharacterManager
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(3);
+            });
+
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
             services.AddDbContext<UsersDataContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:LensConnection"]));
-
+            
             services.BuildServiceProvider().GetService<UsersDataContext>().Database.Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
+
             app.UseStaticFiles();
+
+
             //app.UseMvcWithDefaultRoute();
             app.UseMvc(routes =>
             {
@@ -58,6 +67,7 @@ namespace RPGCharacterManager
                 //    template: "{*.}",
                 //    defaults: new { controller = "Home", action = "index" }
                 //    );
+
             });
         }
     }
