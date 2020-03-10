@@ -48,18 +48,14 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult Inventory()
         {
-            Character c = new Character();
-            c.CharWallet = new Wallet();
-            c.CharInventory = new Inventory();
-            c.CharInventory.itemField = new Item();
-            c.CharInventory.weaponField = new Weapon();
-            return View();
+            Wallet wallet = CharacterSheetController.character.CharWallet;
+            return View(wallet);
         }
 
         [HttpPost]
-        public IActionResult Inventory(Character c)
+        public IActionResult Inventory(Wallet wallet)
         {
-            CharacterSheetController.character.CharWallet = c.CharWallet;
+            CharacterSheetController.character.CharWallet = wallet;
             return RedirectToAction("Inventory", "CharacterSheet");
         }
 
@@ -89,7 +85,8 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult CharacterInfo()
         {
-            return View();
+            Character c = CharacterSheetController.character;
+            return View(c);
         }
 
         [HttpPost]
