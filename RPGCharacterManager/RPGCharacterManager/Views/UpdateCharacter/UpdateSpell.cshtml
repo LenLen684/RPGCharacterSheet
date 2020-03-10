@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Update Spell";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Spell
+
+<h1>Update Spell</h1>
+
+<form method="post">
+
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="SpellName">Spell Name</label></th>
+                <th><label asp-for="SpellDescription">Spell Description</label></th>
+                <th><label asp-for="SpellLevel">Spell Level</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="SpellName" /></th>
+                <th><input asp-for="SpellDescription" /></th>
+                <th><input asp-for="SpellLevel" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Update Spell</button></p>
+
+</form>

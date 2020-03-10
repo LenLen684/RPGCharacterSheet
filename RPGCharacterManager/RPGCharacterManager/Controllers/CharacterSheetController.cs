@@ -14,79 +14,60 @@ namespace CharacterSheetManager.Controllers
         {
             CharInfo = new CharacterInfo()
             {
-                CharName = "Ruby",
-                Class = "Sorcerer",
-                Level = 3,
-                Background = "Unknown",
-                PlayerName = "Lane",
-                Race = "Flintspark Goblin",
-                Alignment = "Chaotic Neutral",
+                CharName = "",
+                Class = "",
+                Level = 1,
+                Background = "",
+                PlayerName = "",
+                Race = "",
+                Alignment = "",
                 CurrentEXP = 0,
                 GoalEXP = 350,
-                BackgroundInfo = new List<string>() { "Loves fire", "Fire", "A lot of fire", "Is easily distracted by fire" }
+                BackgroundInfo = new List<string>() { "", "", "", "" }
             },
             CharInventory = new Inventory()
             {
-                items = new List<Item>()
-                {
-                    new Item() { itemName = "Red Gem", itemAmount = 20, itemDescription = "A basic red gem" },
-                    new Item() { itemName = "Yellow Gem", itemAmount = 10, itemDescription = "A basic yellow gem" }
-                },
+                items = new List<Item>(),
                 weapons = new List<Weapon>()
-                {
-                    new Weapon() { weaponName = "Spiked Gauntlet", weaponDescription = "A gauntlet with spikes", weaponMod = eWeaponMod.STRENGTH },
-                    new Weapon() { weaponName = "Torch", weaponDescription = "A basic torch", weaponMod = eWeaponMod.STRENGTH }
-                }
             },
-            Features = new FeatureList() {
-                Features = new List<Feature>()
-                { 
-                    new Feature(){featureName = "Dark Vision", featureDescription = "See up to 60 ft in the dark"},
-                    new Feature(){featureName = "Never Learning Always Burning", featureDescription = "Use charisma instead of wisdom on class features"}
-                }
-            },
+            Features = new FeatureList(),
             SavingThrows = new SaveThrows() { },
             Spells = new SpellBook()
             {
-                Spells = new List<Spell>()
-                {
-                    new Spell() { SpellName = "Burning Hands", SpellDescription = "Hands burn", SpellLevel = 0 },
-                    new Spell() { SpellName = "Detect Magic", SpellDescription = "Find magic if any", SpellLevel = 0 },
-                    new Spell() { SpellName = "Fireball", SpellDescription = "Big fire", SpellLevel = 1 }
-                },
-                SpellSlotsTotal = new int[9] { 6, 6, 0, 0, 0, 0, 0, 0, 0 },
-                SpellSlotsRemaining = new int[9] { 5, 3, 0, 0, 0, 0, 0, 0, 0 },
-                SpellSaveDC = 11,
-                SpellAttackBonus = 6,
-                SpellCastingAbility = eCastingAbility.CHARISMA
+                Spells = new List<Spell>(),
+                SpellSlotsTotal = new int[9] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                SpellSlotsRemaining = new int[9] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                SpellSaveDC = 0,
+                SpellAttackBonus = 0,
+                SpellCastingAbility = eCastingAbility.NONE
             },
             CharStats = new Stats()
             {
-                Strength = 11,
-                Dexterity = 13,
-                Constitution = 11,
-                Intelligence = 11,
-                Wisdom = 12,
-                Charisma = 16,
+                Strength = 0,
+                Dexterity = 0,
+                Constitution = 0,
+                Intelligence = 0,
+                Wisdom = 0,
+                Charisma = 0,
                 StrengthMod = 0,
-                DexterityMod = 1,
+                DexterityMod = 0,
                 ConstitutionMod = 0,
                 IntelligenceMod = 0,
-                WisdomMod = 1,
-                CharismaMod = 3,
+                WisdomMod = 0,
+                CharismaMod = 0,
                 Inspiration = 0,
-                PassivePerception = 1,
-                ArmorClass = 12,
-                Initiative = 1,
-                Speed = 30,
-                MaxHP = 14,
-                CurrentHP = 12,
+                PassivePerception = 0,
+                ArmorClass = 0,
+                Initiative = 0,
+                Speed = 0,
+                MaxHP = 0,
+                CurrentHP = 0,
                 TempHP = 0,
                 HitDie = eHitDice.D6,
                 DeathSaveRolls = new DeathSaves()
             },
-            CharWallet = new Wallet() { copper = 7, silver = 12, gold = 50, electrum = 0, platinum = 0 },
-            Proficiencies = new List<string>() { "Common", "Ignus", "Goblin", "Torches", "Fire attacks" },
+            CharWallet = new Wallet() { copper = 0, silver = 0, gold = 0, electrum = 0, platinum = 0 },
+            Proficiencies = new List<string>(),
             CharSkills = new Skills()
         };
 
@@ -154,6 +135,22 @@ namespace CharacterSheetManager.Controllers
         {
             return View(rolls);
         }
+
+        [HttpPost]
+        public IActionResult DeleteSpell(int Id)
+        {
+            character.Spells.Spells.Remove(character.Spells.Spells.Where(s => s.Id == Id).FirstOrDefault());
+            return RedirectToAction("Spells", "CharacterSheet");
+        }
+
+
+
+
+
+
+
+
+
 
         public IActionResult AddSucc()
         {

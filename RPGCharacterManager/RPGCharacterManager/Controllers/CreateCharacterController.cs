@@ -30,6 +30,18 @@ namespace RPGCharacterManager.Controllers
         public IActionResult Features(Character c)
         {
             CharacterSheetController.character.Features.AddFeature(c.Features.FeatureField.featureName, c.Features.FeatureField.featureDescription);
+            return RedirectToAction("Features", "CharacterSheet");
+        }
+
+        public IActionResult Proficiency()
+        {
+            Character c = new Character();
+            return View(c);
+        }
+
+        [HttpPost]
+        public IActionResult Proficiency(Character c)
+        {
             CharacterSheetController.character.Proficiencies.Add(c.ProficiencyField);
             return RedirectToAction("Features", "CharacterSheet");
         }
@@ -48,7 +60,29 @@ namespace RPGCharacterManager.Controllers
         public IActionResult Inventory(Character c)
         {
             CharacterSheetController.character.CharWallet = c.CharWallet;
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
+
+        public IActionResult Item()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Item(Character c)
+        {
             CharacterSheetController.character.CharInventory.items.Add(c.CharInventory.itemField);
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
+
+        public IActionResult Weapon()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Weapon(Character c)
+        {
             CharacterSheetController.character.CharInventory.weapons.Add(c.CharInventory.weaponField);
             return RedirectToAction("Inventory", "CharacterSheet");
         }

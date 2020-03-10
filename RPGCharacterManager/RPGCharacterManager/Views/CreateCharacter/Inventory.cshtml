@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewData["Title"] = "Inventory";
+    ViewData["Title"] = "Update Wallet";
     Layout = "~/Views/_Layout.cshtml";
 }
 @model Character
 
-<h1>Create Inventory</h1>
+<h1>Update Wallet</h1>
 <form method="post">
 
     @*Wallet*@
@@ -29,41 +29,5 @@
             </tr>
         </tbody>
     </table>
-
-    @*Item*@
-    <table>
-        <thead>
-            <tr>
-                <th><label asp-for="CharInventory.itemField.itemAmount">Item Amount:</label></th>
-                <th><label asp-for="CharInventory.itemField.itemName">Item Name:</label></th>
-                <th><label asp-for="CharInventory.itemField.itemDescription">Item Description:</label></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th><input asp-for="CharInventory.itemField.itemAmount" /></th>
-                <th><input asp-for="CharInventory.itemField.itemName" /></th>
-                <th><input asp-for="CharInventory.itemField.itemDescription" /></th>
-            </tr>
-        </tbody>
-    </table>
-
-    @*Weapon*@
-    <table>
-        <thead>
-            <tr>
-                <th><label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label></th>
-                <th><label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label></th>
-                <th><label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th><input asp-for="CharInventory.weaponField.weaponName" /></th>
-                <th><input asp-for="CharInventory.weaponField.weaponDescription" /></th>
-                <th><input asp-for="CharInventory.weaponField.weaponMod" /></th>
-            </tr>
-        </tbody>
-    </table>
-    <p><button type="submit">Create</button></p>
+    <p><button type="submit">Update Wallet</button></p>
 </form>
