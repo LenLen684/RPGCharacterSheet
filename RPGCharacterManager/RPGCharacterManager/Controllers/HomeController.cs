@@ -5,19 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 using RPGCharacterManager.Models.User;
+using Microsoft.AspNetCore.Http;
 using RPGCharacterManager.Models.Character;
 using RPGCharacterManager.Models.DatabaseContexts;
+using BCrypt.Net;
+using System.Text;
 
 namespace RPGCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly UsersDataContext database;
 
-        //public HomeController( UsersDataContext db ) : base()
-        //{
-        //    database = db;
-        //}
+        private Random rng = new Random();
+        private readonly UsersDataContext database;
+        //private string contextCookie = 
+
+        public HomeController( UsersDataContext db ) : base()
+        {
+            database = db;
+        }
 
         static User user = new User()
         {
@@ -35,7 +41,14 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult Index()
         {
-            return View(UsersDataContext.currentUser);
+            //Cookie example
+            HttpContext.Response.Cookies.Append("test_1", "Hi there");
+            HttpContext.Session.TryGetValue("UserID", out byte[] id);
+            if(id != null && id.Length != 0)
+            {
+                return View(database.Users.FirstOrDefault(u => u.UserId.Equals((Encoding.UTF8.GetString(id)))));
+            }
+            return View(null);
         }
 
         public IActionResult testingPage()
@@ -66,7 +79,7 @@ namespace RPGCharacterManager.Controllers
             //        //}
             //    }*/
             //}
-            return View();
+            return View(database.Users);
         }
 
         [HttpPost]
@@ -79,9 +92,10 @@ namespace RPGCharacterManager.Controllers
         {
             username = username.ToLower();
             bool InDatabase = false;
-            bool IsUsername = username.Contains("@"); // Hey cowboy, get the users table by saying database.Users, It returns an Ienumerable<User> so it's a list of users, do as you please with it, ask oscar how to edit the database'
-            if (IsUsername)
+            bool IsEmail = username.Contains("@"); // Hey cowboy, get the users table by saying database.Users, It returns an Ienumerable<User> so it's a list of users, do as you please with it, ask oscar how to edit the database'
+            if (IsEmail)
             {
+                //InDatabase = Check database for emails that are similar
                 foreach ( User user in database.Users )
                 {
                     if ( user.Email.Equals(username) )
@@ -90,10 +104,10 @@ namespace RPGCharacterManager.Controllers
                         break;
                     }
                 }
-                //InDatabase = Check database for emails that are similar
             }
             else
             {
+                //InDatabase = Check for usernames in the database
                 foreach ( User user in database.Users )
                 {
                     if ( user.Username.Equals(username) )
@@ -102,69 +116,53 @@ namespace RPGCharacterManager.Controllers
                         break;
                     }
                 }
-                //InDatabase = Check for usernames in the database
             }
 
             if ( InDatabase )
             {
-                User u = database.Users.FirstOrDefault(u => u.Username.Equals(username));
-                if ( u.Password.Equals(password) )
+                User u = IsEmail? database.Users.FirstOrDefault(u => u.Email.Equals(username)) : database.Users.FirstOrDefault(u => u.Username.Equals(username));
+                if ( BCrypt.Net.BCrypt.Verify(password, u.Password))
                 {
-                    UsersDataContext.currentUser = u;
-                    return View("Index", u);
+                    if (HttpContext.Session.IsAvailable)
+                    {
+
+                    HttpContext.Session.Set("UserID", Encoding.UTF8.GetBytes(u.UserId.ToString()));
+                    Console.WriteLine(u.UserId);
+                    Console.WriteLine(Encoding.UTF8.GetString(HttpContext.Session.Get("UserID")));
+
+                    }
+                    
+                    return View("Index", database.Users.FirstOrDefault(u => u.UserId.ToString().Equals((Encoding.UTF8.GetString(HttpContext.Session.Get("UserID"))))));
                 }
             }
-            /*
-             * if(InDatabase)
-             * {    
-             *       if(IsUsername){
-             *          if(--Check if password matches username--)
-             *          {
-             *              return RedirectToAction("Characters", --UserID--);
-             *          } else {
-             *              break;
-             *          }
-             *       }
-             *       else
-             *       {
-             *          if(--Check if password matches email--)
-             *          {
-             *              return RedirectToAction("Characters", --UserID--);
-             *          } else {
-             *              break;
-             *          }
-             *       }
-             * } 
-             * else
-             * {
-             * 
-             * }
-             */
-
-            return RedirectToAction("Index",UsersDataContext.currentUser);
+            return RedirectToAction("Index", null);
         }
 
         
         public IActionResult SignUp(string email, string username, string password, string passwordverification)
         {
+            SaltRevision salt = (SaltRevision)Enum.GetValues(typeof(SaltRevision)).GetValue(rng.Next(Enum.GetValues(typeof(SaltRevision)).Length));
             if ( password.Equals(passwordverification) )
             {
                 User u = new User();
                 u.Username = username;
                 u.Email = email;
-                u.Password = password;
+                u.Password = BCrypt.Net.BCrypt.HashPassword(password,12,salt);
                 u.UserId = database.Users.Count() + 2;
-                database.Users.AddAsync(u);
+                database.AddAsync(u);
                 database.SaveChangesAsync();
-                UsersDataContext.currentUser = u;
-                return View("Index", u);
+                //HttpContext.Session.Set("UserID", Encoding.UTF8.GetBytes(u.UserId.ToString()));
+                //return to the index with the user
+                return View("Index", null);
             }
             else
             {
                 return View("Index");
             }
-            return RedirectToAction("Characters");
+            //return RedirectToAction("Characters");
         }
+
+
 
         public IActionResult Characters()
         {
@@ -176,6 +174,12 @@ namespace RPGCharacterManager.Controllers
             }*/
 
             return View(user);
+        }
+
+        public IActionResult LogOut()
+        {
+                HttpContext.Session.Remove("UserID");
+                return RedirectToAction("Index", null);
         }
     }
 }

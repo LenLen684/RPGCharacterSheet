@@ -11,12 +11,11 @@
     <div id="main">
     @*Temporary navigation bar to show character info*@
     <div class="topnav">
+        <a asp-action="testingPage" asp-controller="Home">Checking @*for usernames and passwords in the database*@</a>
         <a asp-controller="Home" asp-action="Index">Log In or Sign Up</a>
     </div>
 
     <div class="topnavLower">
-
-
         <a asp-action="CharacterInfo" asp-controller="CharacterSheet">CharacterInfo</a>
         <a asp-action="Features" asp-controller="CharacterSheet">Features</a>
         <a asp-action="Inventory" asp-controller="CharacterSheet">Inventory</a>
@@ -35,7 +34,6 @@
 
         @*EXTRAS*@
         <a asp-action="RollForm" asp-controller="CharacterSheet">Roll Dice</a>
-        
     </div>
         <div id="content">
             @RenderBody()
