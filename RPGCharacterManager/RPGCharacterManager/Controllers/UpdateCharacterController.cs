@@ -71,6 +71,9 @@ namespace RPGCharacterManager.Controllers
             s.SpellLevel = spell.SpellLevel;
             return RedirectToAction("Spells", "CharacterSheet");
         }
+        #endregion
+
+        #region Inventory
 
         public IActionResult UpdateWeapon(int Id)
         {
@@ -101,5 +104,7 @@ namespace RPGCharacterManager.Controllers
             CharacterSheetController.character.CharInventory.items.Where(i => i.Id == Id).FirstOrDefault().itemAmount = item.itemAmount;
             return RedirectToAction("Inventory", "CharacterSheet");
         }
+
+        #endregion
     }
 }
