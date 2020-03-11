@@ -58,6 +58,9 @@
     </footer>
     }else{
     <p>Youre logged in as @Model.Username !</p>
+    <form asp-action="LogOut">
+        <button type="submit">Log Out</button>
+    </form>
     }
     </body>
 

@@ -5,18 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RPGCharacterManager.Models.OscarsDatabaseTestingModels;
 using RPGCharacterManager.Models.User;
+using Microsoft.AspNetCore.Http;
 using RPGCharacterManager.Models.Character;
 using RPGCharacterManager.Models.DatabaseContexts;
 using RPGCharacterManager.Models.DatabaseModels;
 using BCrypt.Net;
 using CharacterSheetManager.Controllers;
+using System.Text;
 
 namespace RPGCharacterManager.Controllers
 {
     public class HomeController : Controller
     {
+
         private Random rng = new Random();
         private readonly UsersDataContext database;
+
+        //private string contextCookie = 
 
         public HomeController( UsersDataContext db ) : base()
         {
@@ -39,7 +44,14 @@ namespace RPGCharacterManager.Controllers
 
         public IActionResult Index()
         {
-            return View(UsersDataContext.currentUser);
+            //Cookie example
+            HttpContext.Response.Cookies.Append("test_1", "Hi there");
+            HttpContext.Session.TryGetValue("UserID", out byte[] id);
+            if(id != null && id.Length != 0)
+            {
+                return View(database.Users.FirstOrDefault(u => u.UserId.ToString().Equals((Encoding.UTF8.GetString(id)))));
+            }
+            return View(null);
         }
 
         public IActionResult testingPage()
@@ -89,12 +101,22 @@ namespace RPGCharacterManager.Controllers
                 if ( BCrypt.Net.BCrypt.Verify(password, u.Password))
                 {
                     CharacterSheetController.loggedIn = u.UserId;
-
+                    // fix above for session
                     UsersDataContext.currentUser = u;
-                    return View("Index", u);
+
+                    if (HttpContext.Session.IsAvailable)
+                    {
+
+                    HttpContext.Session.Set("UserID", Encoding.UTF8.GetBytes(u.UserId.ToString()));
+                    Console.WriteLine(u.UserId);
+                    Console.WriteLine(Encoding.UTF8.GetString(HttpContext.Session.Get("UserID")));
+
+                    }
+                    
+                    return View("Index", database.Users.FirstOrDefault(u => u.UserId.ToString().Equals((Encoding.UTF8.GetString(HttpContext.Session.Get("UserID"))))));
                 }
             }
-            return RedirectToAction("Index",UsersDataContext.currentUser);
+            return RedirectToAction("Index", null);
         }
 
         
@@ -116,6 +138,7 @@ namespace RPGCharacterManager.Controllers
                 Converter.addCharacter(u,CharacterSheetController.character2);
                 UsersDataContext.currentUser = u;
                 return View("Index", u);
+
             }
             else
             {
@@ -123,6 +146,8 @@ namespace RPGCharacterManager.Controllers
             }
             //return RedirectToAction("Characters");
         }
+
+
 
         public IActionResult Characters()
         {
@@ -134,6 +159,12 @@ namespace RPGCharacterManager.Controllers
             }*/
 
             return View(user);
+        }
+
+        public IActionResult LogOut()
+        {
+                HttpContext.Session.Remove("UserID");
+                return RedirectToAction("Index", null);
         }
     }
 }

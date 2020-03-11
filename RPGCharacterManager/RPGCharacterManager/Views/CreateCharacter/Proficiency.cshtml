@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Add Proficiency";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Character
+
+<h1>Add Proficiency</h1>
+
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="ProficiencyField">Proficiency Name</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="ProficiencyField" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <p><button type="submit">Add Proficiency</button></p>
+</form>
+

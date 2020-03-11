@@ -17,10 +17,17 @@
     <tbody>
         @foreach (Feature feature in @Model.Features.Features)
         {
-            <tr>
-                <th>@feature.featureName</th>
-                <th>@feature.featureDescription</th>
-            </tr>
+        <tr>
+            <th>@feature.featureName</th>
+            <th>@feature.featureDescription</th>
+            <th><a class="btn" asp-action="UpdateFeature" asp-route-resID="@feature.Id">Update</a></th>
+            <th>
+                <form asp-action="DeleteFeature" method="post">
+                    <input type="hidden" name="resID" value="@feature.Id" />
+                    <button class="btn" type="submit">Delete</button>
+                </form>
+            </th>
+        </tr>
         }
     </tbody>
 </table>
@@ -35,13 +42,21 @@
     </thead>
     <tbody>
         @{
-            foreach (string proficiency in @Model.Proficiencies)
+            //foreach (string proficiency in @Model.Proficiencies)
+            for(int i = 0; i < Model.Proficiencies.Count(); i++)
             {
                 <tr>
-                    <th>@proficiency</th>
+                    <th>@Model.Proficiencies.ElementAt(i)</th>
+                    <th><a class="btn" asp-action="UpdateProficiency" asp-route-resID="@i">Update</a></th>
+                    <th>
+                        <form asp-action="DeleteProficiency" method="post">
+                            <input type="hidden" name="resID" value="@i" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </th>
                 </tr>
-            }
         }
-    </tbody>
-</table>
+        }
+        </tbody>
+    </table>
 

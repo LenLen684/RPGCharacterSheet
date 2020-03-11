@@ -30,32 +30,63 @@ namespace RPGCharacterManager.Controllers
         public IActionResult Features(Character c)
         {
             CharacterSheetController.character.Features.AddFeature(c.Features.FeatureField.featureName, c.Features.FeatureField.featureDescription);
+            return RedirectToAction("Features", "CharacterSheet");
+        }
+
+        public IActionResult Proficiency()
+        {
+            Character c = new Character();
+            return View(c);
+        }
+
+        [HttpPost]
+        public IActionResult Proficiency(Character c)
+        {
             CharacterSheetController.character.Proficiencies.Add(c.ProficiencyField);
             return RedirectToAction("Features", "CharacterSheet");
         }
 
         public IActionResult Inventory()
         {
-            Character c = new Character();
-            c.CharWallet = new Wallet();
-            c.CharInventory = new Inventory();
-            c.CharInventory.itemField = new Item();
-            c.CharInventory.weaponField = new Weapon();
+            Wallet wallet = CharacterSheetController.character.CharWallet;
+            return View(wallet);
+        }
+
+        [HttpPost]
+        public IActionResult Inventory(Wallet wallet)
+        {
+            CharacterSheetController.character.CharWallet = wallet;
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
+
+        public IActionResult Item()
+        {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Inventory(Character c)
+        public IActionResult Item(Character c)
         {
-            CharacterSheetController.character.CharWallet = c.CharWallet;
             CharacterSheetController.character.CharInventory.items.Add(c.CharInventory.itemField);
+            return RedirectToAction("Inventory", "CharacterSheet");
+        }
+
+        public IActionResult Weapon()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Weapon(Character c)
+        {
             CharacterSheetController.character.CharInventory.weapons.Add(c.CharInventory.weaponField);
             return RedirectToAction("Inventory", "CharacterSheet");
         }
 
         public IActionResult CharacterInfo()
         {
-            return View();
+            Character c = CharacterSheetController.character;
+            return View(c);
         }
 
         [HttpPost]

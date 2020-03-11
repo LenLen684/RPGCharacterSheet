@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Add Weapon";
+    Layout = "~/Views/_Layout.cshtml";
+}
+@model Character
+
+<h1>Add Weapon</h1>
+<form method="post">
+    @*Weapon*@
+    <table>
+        <thead>
+            <tr>
+                <th><label asp-for="CharInventory.weaponField.weaponName">Weapon Name:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponDescription">Weapon Description:</label></th>
+                <th><label asp-for="CharInventory.weaponField.weaponMod">Weapon Modifier:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><input asp-for="CharInventory.weaponField.weaponName" /></th>
+                <th><input asp-for="CharInventory.weaponField.weaponDescription" /></th>
+                <th>
+                    <select asp-for="CharInventory.weaponField.weaponMod">
+                        <option value="@eWeaponMod.STRENGTH">Strength</option>
+                        <option value="@eWeaponMod.DEXTERITY">Dexterity</option>
+                        <option value="@eWeaponMod.CONSTITUTION">Constitution</option>
+                        <option value="@eWeaponMod.INTELLIGENCE">Intelligence</option>
+                        <option value="@eWeaponMod.WISDOM">Wisdom</option>
+                        <option value="@eWeaponMod.CHARISMA">Charisma</option>
+                    </select>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><button type="submit">Add Weapon</button></p>
+</form>

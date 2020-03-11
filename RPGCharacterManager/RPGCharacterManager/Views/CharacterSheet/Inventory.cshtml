@@ -56,15 +56,44 @@
                     <th>@item.itemAmount</th>
                     <th>@item.itemName </th>
                     <th>@item.itemDescription</th>
+                    <th><a class="btn" asp-action="UpdateItem" asp-controller="UpdateCharacter" asp-route-Id="@item.Id">Update</a></th>
+                    <th>
+                        <form asp-action="DeleteItem" method="post">
+                            <input type="hidden" name="Id" value="@item.Id" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </th>
                 </tr>
             }
+        }
+    </tbody>
+</table>
 
+<p></p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Weapon Name</th>
+            <th>Description</th>
+            <th>Modifier</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
             foreach (Weapon item in @Model.CharInventory.weapons)
             {
                 <tr>
                     <th>@item.weaponName</th>
                     <th>@item.weaponDescription </th>
                     <th>@item.weaponMod</th>
+                    <th><a class="btn" asp-action="UpdateWeapon" asp-controller="UpdateCharacter" asp-route-Id="@item.Id">Update</a></th>
+                    <th>
+                        <form asp-action="DeleteWeapon" method="post">
+                            <input type="hidden" name="Id" value="@item.Id" />
+                            <button class="btn" type="submit">Delete</button>
+                        </form>
+                    </th>
                 </tr>
             }
         }

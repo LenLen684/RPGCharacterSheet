@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewData["Title"] = "Features";
+    ViewData["Title"] = "Add Feature";
     Layout = "~/Views/_Layout.cshtml";
 }
 @model Character
 
-<h1>Features/Proficiencies</h1>
+<h1>Add Feature</h1>
 
 <form method="post">
     <table>
@@ -13,17 +13,15 @@
             <tr>
                 <th><label asp-for="Features.FeatureField.featureName">Feature Name</label></th>
                 <th><label asp-for="Features.FeatureField.featureDescription">Feature Description</label></th>
-                <th><label asp-for="ProficiencyField">Proficiency Name</label></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th><input asp-for="Features.FeatureField.featureName" /></th>
                 <th><input asp-for="Features.FeatureField.featureDescription" /></th>
-                <th><input asp-for="ProficiencyField" /></th>
             </tr>
         </tbody>
     </table>
-    <p><button type="submit">Create</button></p>
+    <p><button type="submit">Add Feature</button></p>
 </form>
 
