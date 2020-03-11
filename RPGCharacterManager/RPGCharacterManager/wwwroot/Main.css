@@ -105,6 +105,16 @@ table {
 
 .FloatingButton {
     position: fixed;
-    bottom: 5%;
-    right: 20%;
+    top: 15%;
+    left: 1%;
+}
+.FloatingButtonLower {
+    position: fixed;
+    top: 20%;
+    left: 1%;
+}
+.FloatingButtonLowest {
+    position: fixed;
+    top: 25%;
+    left: 1%;
 }
