@@ -113,3 +113,8 @@ table {
     top: 20%;
     left: 1%;
 }
+.FloatingButtonLowest {
+    position: fixed;
+    top: 25%;
+    left: 1%;
+}
